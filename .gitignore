@@ -1,0 +1,3 @@
+# remove node modules
+# dependencies
+/server/node_modules
