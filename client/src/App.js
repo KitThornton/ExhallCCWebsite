@@ -1,8 +1,16 @@
+import TopNavBar from './Navbar'
+import { React, Fragment } from 'react';
+import {Container} from 'react-bootstrap'
+import './Stylesheets/Home.css'
 
 function App() {
   return (
-    <div>
-    </div>
+      <Fragment>
+          <Container>
+              <TopNavBar />
+              cunt
+          </Container>
+      </Fragment>
   );
 }
 
