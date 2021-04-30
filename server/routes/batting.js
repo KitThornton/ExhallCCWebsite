@@ -21,4 +21,42 @@ router.get("/highestCareerRuns/:count", async function(req, res){
     }
 });
 
+/*
+    Top career high scores
+    Again we will replace this with a procedure, need to return the player name as well I assume
+ */
+router.get("/highestCareerScores/:count", async function(req, res){
+
+    try {
+        const { count } = req.params;
+        const q = `SELECT * FROM summary.battingseason WHERE year IS NULL ORDER BY Highscore DESC LIMIT ${count}`;
+        const todos = await pool.query(q);
+        res.json(todos);
+        console.log("Retrieved from summary.battingseason")
+
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+/*
+    Highest average by season
+    parameters are seasona and count -> into function/procedure
+ */
+router.get("/highestSeasonAverage/:season/:count", async function(req, res){
+
+    try {
+        const { season, count } = req.params;
+        const q = `SELECT * FROM summary.battingseason WHERE year = ${season} AND Average IS NOT NULL ORDER BY Average DESC LIMIT ${count}`;
+        console.log(q);
+        const todos = await pool.query(q);
+        res.json(todos);
+        console.log("Retrieved from summary.battingseason")
+
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+
 module.exports = router;
