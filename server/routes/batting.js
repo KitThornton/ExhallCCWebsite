@@ -61,40 +61,30 @@ router.get("/highestSeasonAverage/:season/:count", async function(req, res){
 /*
     Get career batting stats by player id
  */
-router.get("/CareerId/:id", async function(req, res){
+router.get("/career/:id", async function(req, res){
 
     try {
+        // If it can be parsed then go by id, otherwise name
         const { id } = req.params;
-        const q = `SELECT * FROM summary.battingseason WHERE year IS NULL AND playerid = ${id}`;
-        console.log(q);
-        const todos = await pool.query(q);
-        res.json(todos);
-        console.log("Retrieved from summary.battingseason")
 
-    } catch (err) {
-        console.error(err.message);
-    }
-});
+        let r = parseInt(id) || id;
 
-
-/*
-    Get career batting stats by player name
- */
-router.get("/CareerName/:name", async function(req, res){
-
-    try {
-        const { name } = req.params;
-        const q = `SELECT * FROM summary.battingseason B 
+        let q;
+        if (r === parseInt(r, 10)) {
+            q = `SELECT * FROM summary.battingseason WHERE year IS NULL AND playerid = ${r}`;
+        } else {
+            q = `SELECT * FROM summary.battingseason B 
             INNER JOIN Players.Details D ON D.PlayerId = B.PlayerId 
-            WHERE year IS NULL AND D.playername LIKE '${name}'`;
-        // console.log(q);
+            WHERE year IS NULL AND D.playername LIKE '${r.toString()}'`;
+        }
+
         const todos = await pool.query(q);
         res.json(todos);
-        console.log("Retrieved from summary.battingseason")
+        console.log(`Retrieved career stats from summary.battingseason for player ${r}`)
 
     } catch (err) {
         console.error(err.message);
     }
-});
+})
 
 module.exports = router;
