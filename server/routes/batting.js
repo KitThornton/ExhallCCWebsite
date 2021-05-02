@@ -61,12 +61,33 @@ router.get("/highestSeasonAverage/:season/:count", async function(req, res){
 /*
     Get career batting stats by player id
  */
-router.get("/career/:id", async function(req, res){
+router.get("/CareerId/:id", async function(req, res){
 
     try {
         const { id } = req.params;
         const q = `SELECT * FROM summary.battingseason WHERE year IS NULL AND playerid = ${id}`;
         console.log(q);
+        const todos = await pool.query(q);
+        res.json(todos);
+        console.log("Retrieved from summary.battingseason")
+
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+
+/*
+    Get career batting stats by player name
+ */
+router.get("/CareerName/:name", async function(req, res){
+
+    try {
+        const { name } = req.params;
+        const q = `SELECT * FROM summary.battingseason B 
+            INNER JOIN Players.Details D ON D.PlayerId = B.PlayerId 
+            WHERE year IS NULL AND D.playername LIKE '${name}'`;
+        // console.log(q);
         const todos = await pool.query(q);
         res.json(todos);
         console.log("Retrieved from summary.battingseason")
