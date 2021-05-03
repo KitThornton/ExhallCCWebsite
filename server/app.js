@@ -9,9 +9,11 @@ app.use(cors());
 // Routes
 let playerRoutes = require('./routes/players');
 let battingRoutes = require('./routes/batting');
+let bowlingRoutes = require('./routes/bowling');
 const createError = require("http-errors");
 app.use('/players', playerRoutes);
 app.use('/batting', battingRoutes);
+app.use('/bowling', bowlingRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

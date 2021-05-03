@@ -80,11 +80,11 @@ router.get("/career/:id", async function(req, res){
 
         const todos = await pool.query(q);
         res.json(todos);
-        console.log(`Retrieved career stats from summary.battingseason for player ${r}`)
+        console.log(`Retrieved career stats from summary.bowlingseason for player ${r}`)
 
     } catch (err) {
         console.error(err.message);
     }
-})
+});
 
 module.exports = router;
