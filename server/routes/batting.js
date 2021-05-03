@@ -11,10 +11,10 @@ router.get("/highestCareerRuns/:count", async function(req, res){
 
     try {
         const { count } = req.params;
-        const q = `SELECT * FROM summary.battingseason WHERE year IS NULL ORDER BY Runs DESC LIMIT ${count}`;
+        const q = `SELECT * FROM players.batting WHERE year IS NULL ORDER BY Runs DESC LIMIT ${count}`;
         const todos = await pool.query(q);
         res.json(todos);
-        console.log("Retrieved from summary.battingseason")
+        console.log("Retrieved from players.batting")
 
     } catch (err) {
         console.error(err.message);
@@ -29,10 +29,10 @@ router.get("/highestCareerScores/:count", async function(req, res){
 
     try {
         const { count } = req.params;
-        const q = `SELECT * FROM summary.battingseason WHERE year IS NULL ORDER BY Highscore DESC LIMIT ${count}`;
+        const q = `SELECT * FROM players.batting WHERE year IS NULL ORDER BY Highscore DESC LIMIT ${count}`;
         const todos = await pool.query(q);
         res.json(todos);
-        console.log("Retrieved from summary.battingseason")
+        console.log("Retrieved from players.batting")
 
     } catch (err) {
         console.error(err.message);
@@ -47,11 +47,11 @@ router.get("/highestSeasonAverage/:season/:count", async function(req, res){
 
     try {
         const { season, count } = req.params;
-        const q = `SELECT * FROM summary.battingseason WHERE year = ${season} AND Average IS NOT NULL ORDER BY Average DESC LIMIT ${count}`;
+        const q = `SELECT * FROM players.batting WHERE year = ${season} AND Average IS NOT NULL ORDER BY Average DESC LIMIT ${count}`;
         console.log(q);
         const todos = await pool.query(q);
         res.json(todos);
-        console.log("Retrieved from summary.battingseason")
+        console.log("Retrieved from players.batting")
 
     } catch (err) {
         console.error(err.message);
@@ -71,9 +71,9 @@ router.get("/career/:id", async function(req, res){
 
         let q;
         if (r === parseInt(r, 10)) {
-            q = `SELECT * FROM summary.battingseason WHERE year IS NULL AND playerid = ${r}`;
+            q = `SELECT * FROM players.batting WHERE year IS NULL AND playerid = ${r}`;
         } else {
-            q = `SELECT * FROM summary.battingseason B 
+            q = `SELECT * FROM players.batting B 
             INNER JOIN Players.Details D ON D.PlayerId = B.PlayerId 
             WHERE year IS NULL AND D.playername LIKE '${r.toString()}'`;
         }

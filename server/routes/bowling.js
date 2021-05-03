@@ -11,10 +11,10 @@ router.get("/CareerWickets/:count", async function(req, res){
 
     try {
         const { count } = req.params;
-        const q = `SELECT * FROM summary.bowlingseason WHERE year IS NULL ORDER BY Wickets DESC LIMIT ${count}`;
+        const q = `SELECT * FROM players.bowling WHERE year IS NULL ORDER BY Wickets DESC LIMIT ${count}`;
         const todos = await pool.query(q);
         res.json(todos);
-        console.log("Retrieved from summary.bowlingseason")
+        console.log("Retrieved from players.bowling")
 
     } catch (err) {
         console.error(err.message);
@@ -29,12 +29,12 @@ router.get("/CareerBestFigures/:count", async function(req, res){
 
     try {
         const { count } = req.params;
-        const q = `SELECT * FROM summary.bowlingseason
+        const q = `SELECT * FROM players.bowling
                    WHERE year IS NULL AND bestfigswickets IS NOT NULL AND bestfigsRuns IS NOT NULL
                    ORDER BY bestfigswickets DESC, bestfigsruns ASC LIMIT ${count}`;
         const todos = await pool.query(q);
         res.json(todos);
-        console.log("Retrieved from summary.bowlingseason")
+        console.log("Retrieved from players.bowling")
 
     } catch (err) {
         console.error(err.message);
@@ -49,11 +49,11 @@ router.get("/SeasonAverage/:season/:count", async function(req, res){
 
     try {
         const { season, count } = req.params;
-        const q = `SELECT * FROM summary.bowlingseason WHERE year = ${season} AND Average IS NOT NULL ORDER BY Average LIMIT ${count}`;
+        const q = `SELECT * FROM players.bowling WHERE year = ${season} AND Average IS NOT NULL ORDER BY Average LIMIT ${count}`;
         console.log(q);
         const todos = await pool.query(q);
         res.json(todos);
-        console.log("Retrieved from summary.bowlingseason")
+        console.log("Retrieved from players.bowling")
 
     } catch (err) {
         console.error(err.message);
@@ -73,16 +73,16 @@ router.get("/career/:id", async function(req, res){
 
         let q;
         if (r === parseInt(r, 10)) {
-            q = `SELECT * FROM summary.bowlingseason WHERE year IS NULL AND playerid = ${r}`;
+            q = `SELECT * FROM players.bowling WHERE year IS NULL AND playerid = ${r}`;
         } else {
-            q = `SELECT * FROM summary.bowlingseason B 
+            q = `SELECT * FROM players.bowling B 
             INNER JOIN Players.Details D ON D.PlayerId = B.PlayerId 
             WHERE year IS NULL AND D.playername LIKE '${r.toString()}'`;
         }
 
         const todos = await pool.query(q);
         res.json(todos);
-        console.log(`Retrieved career stats from summary.bowlingseason for player ${r}`)
+        console.log(`Retrieved career stats from players.bowling for player ${r}`)
 
     } catch (err) {
         console.error(err.message);
