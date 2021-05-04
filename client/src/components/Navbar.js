@@ -1,9 +1,9 @@
-
-import React from "react";
+// So, let's test out some code for some nav-bars!
+import * as React from "react";
 import {Navbar, NavDropdown, Nav, Form, Button, FormControl } from "react-bootstrap";
-// import logo from 'img/exhall_logo.jpg';
 
-class TopNavBar extends React.Component{
+class NavBar extends React.Component{
+
     render() {
         return (
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -60,4 +60,4 @@ class TopNavBar extends React.Component{
     }
 }
 
-export default TopNavBar
+export default NavBar

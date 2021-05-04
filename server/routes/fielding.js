@@ -3,6 +3,53 @@ let express = require('express'),
     router = express.Router(),
     pool = require("../DB.js");
 
+router.get("/CareerCatches/:count", async function(req, res){
+
+    try {
+        const { count } = req.params;
+        const q = `SELECT * FROM players.fielding
+                   WHERE year IS NULL
+                   ORDER BY Catches DESC LIMIT ${count}`;
+        const todos = await pool.query(q);
+        res.json(todos);
+        console.log("Retrieved from players.fielding")
+
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+router.get("/CareerStumpings/:count", async function(req, res){
+
+    try {
+        const { count } = req.params;
+        const q = `SELECT * FROM players.fielding
+                   WHERE year IS NULL
+                   ORDER BY Stumpings DESC LIMIT ${count}`;
+        const todos = await pool.query(q);
+        res.json(todos);
+        console.log("Retrieved from players.fielding")
+
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+router.get("/CareerDismissals/:count", async function(req, res){
+
+    try {
+        const { count } = req.params;
+        const q = `SELECT COALESCE(Catches, 0) + COALESCE(Stumpings, 0) AS DISMISSALS, PlayerId FROM players.fielding
+                   WHERE year IS NULL
+                   ORDER BY DISMISSALS DESC LIMIT ${count}`;
+        const todos = await pool.query(q);
+        res.json(todos);
+        console.log("Retrieved from players.fielding")
+
+    } catch (err) {
+        console.error(err.message);
+    }
+});
 
 module.exports = router;
 
