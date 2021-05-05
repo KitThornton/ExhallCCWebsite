@@ -39,7 +39,8 @@ router.get("/CareerDismissals/:count", async function(req, res){
 
     try {
         const { count } = req.params;
-        const q = `SELECT COALESCE(Catches, 0) + COALESCE(Stumpings, 0) AS DISMISSALS, PlayerId FROM players.fielding
+        const q = `SELECT COALESCE(Catches, 0) + COALESCE(Stumpings, 0) AS DISMISSALS, F.PlayerId, D.PlayerName FROM players.fielding F
+                    INNER JOIN Players.Details D ON D.PlayerId = F.PlayerId
                    WHERE year IS NULL
                    ORDER BY DISMISSALS DESC LIMIT ${count}`;
         const todos = await pool.query(q);

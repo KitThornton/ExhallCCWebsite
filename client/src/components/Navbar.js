@@ -2,37 +2,35 @@
 import * as React from "react";
 import {Navbar, NavDropdown, Nav, Form, Button, FormControl } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap"
-import { BrowserRouter } from "react-router-dom";
+// import {Link} from "react-router-dom";
 
 class NavBar extends React.Component{
 
     render() {
         return (
-            // <BrowserRouter>
                 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                    <Navbar.Brand href="../home">
-                        Exhall and Wixford CC
-                        {/*<img*/}
-                        {/*    src={logo}*/}
-                        {/*    width="30"*/}
-                        {/*    height="30"*/}
-                        {/*    className="d-inline-block align-top"*/}
-                        {/*    alt="Exhall CC logo"*/}
-                        {/*/>*/}
-                    </Navbar.Brand>
+                    <LinkContainer to="/Home">
+                        <Navbar.Brand>Exhall and Wixford CC</Navbar.Brand>
+                    </LinkContainer>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">
-                            <Nav.Link href="../WebPages/profile">The Club</Nav.Link>
-                            {/*<Nav.Link href="../hallOfFame">Hall of Fame</Nav.Link>*/}
+                            <LinkContainer to="/AboutTheClub">
+                                <Nav.Link>The Club</Nav.Link>
+                            </LinkContainer>
+                            <LinkContainer to="/Players">
+                                <Nav.Link>Players</Nav.Link>
+                            </LinkContainer>
                             <NavDropdown title="Trophy Cabinet" id="collasible-nav-dropdown">
                                 <NavDropdown.Item href="../WebPages/profile">Players</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="../trophies/club">Club</NavDropdown.Item>
                             </NavDropdown>
-                            {/*<LinkContainer><Nav.Link to="../WebPages/profile">Players</Nav.Link></LinkContainer>*/}
                             {/*<Nav.Link href="#aboutTheClub">About the Club</Nav.Link>*/}
                             <NavDropdown title="Batting" id="collasible-nav-dropdown">
+                                {/*<LinkContainer to="/Profile">*/}
+                                {/*    <NavDropdown.Item>Link</NavDropdown.Item>*/}
+                                {/*</LinkContainer>*/}
                                 <NavDropdown.Item href="../batting/firstXI">First XI</NavDropdown.Item>
                                 <NavDropdown.Item href="../batting/secondXI">Second XI</NavDropdown.Item>
                                 <NavDropdown.Item href="../batting/thirdXI">Third XI</NavDropdown.Item>
@@ -46,8 +44,9 @@ class NavBar extends React.Component{
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="../bowling/career">Career</NavDropdown.Item>
                             </NavDropdown>
-                            <Nav.Link href="../top10s">Top 10s</Nav.Link>
-                            <Nav.Link href="../achievements">Achievements</Nav.Link>
+                            {/*<LinkContainer to="/AboutTheClub">*/}
+                            {/*    <Nav.Link>Achievements</Nav.Link>*/}
+                            {/*</LinkContainer>*/}
                         </Nav>
                         <Form inline>
                             <FormControl type="text" placeholder="Search for a player..." className="mr-sm-2" />
@@ -61,6 +60,6 @@ class NavBar extends React.Component{
                 </Navbar>
         )
     }
-};
+}
 
 export default NavBar

@@ -2,7 +2,7 @@
 function Home() {
     return (
         <div style={{ padding: 0 }} >
-            HOME
+            Profile
         </div>
     );
 }
