@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // Components
-import Profile from './WebPages/Profile';
 import Home from './WebPages/Home';
 import AboutTheClub from "./WebPages/AboutTheClub";
 import NavBar from "./components/Navbar";
 import Players from "./WebPages/Players";
+import Profile from "./WebPages/Profile";
 
 const App = () => (
       <div style={{ padding: 0 }} >
@@ -17,6 +17,7 @@ const App = () => (
                   <Route exact path="/Home" component={Home} />
                   <Route exact path="/Players" component={Players} />
                   <Route exact path="/AboutTheClub" component={AboutTheClub} />
+                  <Route exact path="/Profile/:id" component={Profile} />
               </Switch>
           </Router>
       </div>

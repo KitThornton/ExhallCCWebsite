@@ -55,9 +55,10 @@ const columns = [
         headerName: "Action",
         filter: "disabled",
         // disableClickEventBubbling: true,
-        renderCell: () => {
-
-            return <Button variant="outlined" color="primary" component={Link} to="/Home">
+        renderCell: (params) => {
+            const id = params.getValue("playerid");
+            return <Button variant="outlined" color="primary" component={Link}
+                           to="/Profile/${id}">
                 Profile
             </Button>;
         }

@@ -1,9 +1,10 @@
+import { Container } from "@material-ui/core";
 
-function Home() {
+function Home(props) {
     return (
-        <div style={{ padding: 0 }} >
-            Profile
-        </div>
+        <Container>
+            Profile {props.id}
+        </Container>
     );
 }
 
