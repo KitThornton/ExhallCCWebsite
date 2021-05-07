@@ -2,7 +2,7 @@
 import * as React from "react";
 import {Navbar, NavDropdown, Nav, Form, Button, FormControl } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap"
-// import {Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 class NavBar extends React.Component{
 
@@ -22,9 +22,11 @@ class NavBar extends React.Component{
                                 <Nav.Link>Players</Nav.Link>
                             </LinkContainer>
                             <NavDropdown title="Trophy Cabinet" id="collasible-nav-dropdown">
-                                <NavDropdown.Item href="../WebPages/profile">Players</NavDropdown.Item>
+                                {/*<LinkContainer to="/AboutTheClub">*/}
+                                    <NavDropdown.Item href="/Players">Players</NavDropdown.Item>
+                                {/*</LinkContainer>*/}
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="../trophies/club">Club</NavDropdown.Item>
+                                <NavDropdown.Item href="/Players">Club</NavDropdown.Item>
                             </NavDropdown>
                             {/*<Nav.Link href="#aboutTheClub">About the Club</Nav.Link>*/}
                             <NavDropdown title="Batting" id="collasible-nav-dropdown">
