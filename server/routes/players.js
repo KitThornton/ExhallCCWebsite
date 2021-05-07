@@ -6,8 +6,7 @@ var express = require('express'),
 /*
     Access the player details table and return all
     Number of seasons played
-
-    */
+*/
 router.get("/details", async function(req, res){
 
     try {

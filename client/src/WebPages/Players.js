@@ -74,7 +74,7 @@ const columns: GridColDef[] = [
             };
 
             return <Button variant="outlined" color="primary" onClick={onClick}>
-                Link
+                Profile
             </Button>;
         }
     }
