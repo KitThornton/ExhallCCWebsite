@@ -2,11 +2,15 @@
 // We'll need a list of all the stuff tat we're gonna wanna display
 import React from 'react';
 import { Container } from "@material-ui/core";
-import purple from '@material-ui/core/colors/purple';
-import { makeStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import {DataGrid, GridApi, GridCellValue, GridColDef} from "@material-ui/data-grid";
-import Button from "@material-ui/core/Button";
+// import purple from '@material-ui/core/colors/purple';
+// import { createMuiTheme, makeStyles, MuiThemeProvider } from '@material-ui/core/styles';
+import {DataGrid,
+    // GridApi,
+    // GridCellValue,
+    // GridColDef
+} from "@material-ui/data-grid";
 // import CssBaseline from "@material-ui/core/CssBaseline";
+import DemoLineChart from "../components/DemoLineChart";
 
 class Profile extends React.Component {
 
@@ -35,7 +39,7 @@ class Profile extends React.Component {
         return (
             // <MuiThemeProvider theme={themePurple}>
             //     <CssBaseline />
-            <Container bgcolor="text.secondary">
+            <Container>
                 Profile {this.state.id}
 
                 <div style={{ height: 600, width: '100%', padding: "10px" }}>
@@ -46,21 +50,22 @@ class Profile extends React.Component {
                         columns={columns}
                         pageSize={40}  />
                 </div>
+
+                <DemoLineChart rawdata={this.state.batting} />
             </Container>
             // </MuiThemeProvider>
         );
     }
 }
 
-const color = purple[500];
-
-const themePurple = createMuiTheme({
-    palette: {
-        background: {
-            default: color
-        },
-    }
-});
+// const color = purple[500];
+// const themePurple = createMuiTheme({
+//     palette: {
+//         background: {
+//             default: color
+//         },
+//     }
+// });
 
 const columns = [
     { field: 'battingid', headerName: 'ID', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
@@ -74,6 +79,5 @@ const columns = [
     { field: 'hundreds', headerName: 'Hundreds', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
     { field: 'highscore', headerName: 'Highscore', type: 'number', flex: 1, headerAlign: 'center', align: "center"}
 ];
-
 
 export default Profile;
