@@ -22,6 +22,23 @@ router.get("/details", async function(req, res){
     }
   });
 
+/*
+    Access the player details table and return the details for that player id
+*/
+router.get("/details/:id", async function(req, res){
+
+    try {
+        const { id } = req.params;
+        const q = `SELECT * FROM players.details WHERE playerid = ${id}`;
+        const todos = await pool.query(q)
+        res.json(todos);
+        console.log("Retrieved all items from players.details")
+
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
 /* Further work:
     -> Return trophies, oldest and youngest etc.
  */

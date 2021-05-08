@@ -1,7 +1,7 @@
 // So here will be the profile page for the player..
 // We'll need a list of all the stuff tat we're gonna wanna display
-import React from 'react';
-import { Container } from "@material-ui/core";
+import React, { Fragment } from 'react';
+import { Container, Grid } from "@material-ui/core";
 // import purple from '@material-ui/core/colors/purple';
 // import { createMuiTheme, makeStyles, MuiThemeProvider } from '@material-ui/core/styles';
 import {DataGrid,
@@ -10,17 +10,30 @@ import {DataGrid,
     // GridColDef
 } from "@material-ui/data-grid";
 // import CssBaseline from "@material-ui/core/CssBaseline";
-import DemoLineChart from "../components/DemoLineChart";
+import BiAxialLineChart from "../components/BiAxialLineChart";
 
 class Profile extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {batting: "", id: this.props.match.params.id}
+        this.state = {batting: "", id: this.props.match.params.id, playerName: ""}
     }
 
     componentDidMount() {
         this.getBatting().then(r => r);
+        this.getPlayerName().then(r => r);
+    }
+
+    getPlayerName = async () => {
+        try {
+            const response = await fetch(`http://localhost:4000/players/details/${this.state.id}`);
+            const jsonData = await response.json();
+
+            this.setState({playerName: jsonData.rows[0]["playername"]});
+
+        } catch (err) {
+            console.error(err.message);
+        }
     }
 
     getBatting = async () => {
@@ -39,21 +52,27 @@ class Profile extends React.Component {
         return (
             // <MuiThemeProvider theme={themePurple}>
             //     <CssBaseline />
-            <Container>
-                Profile {this.state.id}
-
-                <div style={{ height: 600, width: '100%', padding: "10px" }}>
-                    <DataGrid
-                        // width={"50%"}
-                        getRowId={(r) => r.battingid}
-                        rows={Array.from(this.state.batting)}
-                        columns={columns}
-                        pageSize={40}  />
-                </div>
-
-                <DemoLineChart rawdata={this.state.batting} />
-            </Container>
-            // </MuiThemeProvider>
+            <Fragment>
+                <Grid container spacing={2} style={{ height: 50, padding: "15px" }}>
+                    <Grid item xs={12} >
+                        {this.state.playerName}
+                    </Grid>
+                </Grid>
+                <Grid container spacing={2} style={{ height: 600, padding: "15px" }}>
+                    <Grid item xs={8} >
+                        <DataGrid
+                            // width={"50%"}
+                            getRowId={(r) => r.battingid}
+                            rows={Array.from(this.state.batting)}
+                            columns={columns}
+                            pageSize={40}  />
+                    </Grid>
+                    <Grid item xs={4}>
+                        <BiAxialLineChart rawdata={this.state.batting} />
+                    </Grid>
+                </Grid>
+                {/*// </MuiThemeProvider>*/}
+            </Fragment>
         );
     }
 }

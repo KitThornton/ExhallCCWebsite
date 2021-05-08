@@ -14,9 +14,9 @@ const styles = {
 function Home() {
     return (
         <Fragment>
-            {/*<Container>*/}
+            <Container>
                 <HomeCard />
-            {/*</Container>*/}
+            </Container>
         </Fragment>
     );
 }

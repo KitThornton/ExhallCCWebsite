@@ -33,18 +33,18 @@ class NavBar extends React.Component{
                                 {/*<LinkContainer to="/Profile">*/}
                                 {/*    <NavDropdown.Item>Link</NavDropdown.Item>*/}
                                 {/*</LinkContainer>*/}
-                                <NavDropdown.Item href="../batting/firstXI">First XI</NavDropdown.Item>
-                                <NavDropdown.Item href="../batting/secondXI">Second XI</NavDropdown.Item>
-                                <NavDropdown.Item href="../batting/thirdXI">Third XI</NavDropdown.Item>
+                                <NavDropdown.Item href="/Batting/1">First XI</NavDropdown.Item>
+                                <NavDropdown.Item href="/Batting/2">Second XI</NavDropdown.Item>
+                                <NavDropdown.Item href="/Batting/3">Third XI</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="../batting/career">Career</NavDropdown.Item>
+                                <NavDropdown.Item href="/Batting/0">Career</NavDropdown.Item>
                             </NavDropdown>
                             <NavDropdown title="Bowling" id="collasible-nav-dropdown">
-                                <NavDropdown.Item href="../bowling/firstXI">First XI</NavDropdown.Item>
-                                <NavDropdown.Item href="../WebPages/profile">Second XI</NavDropdown.Item>
-                                <NavDropdown.Item href="../bowling/thirdXI">Third XI</NavDropdown.Item>
+                                <NavDropdown.Item href="/Bowling/1">First XI</NavDropdown.Item>
+                                <NavDropdown.Item href="/Bowling/2">Second XI</NavDropdown.Item>
+                                <NavDropdown.Item href="/Bowling/3">Third XI</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="../bowling/career">Career</NavDropdown.Item>
+                                <NavDropdown.Item href="/Bowling/0">Career</NavDropdown.Item>
                             </NavDropdown>
                             {/*<LinkContainer to="/AboutTheClub">*/}
                             {/*    <Nav.Link>Achievements</Nav.Link>*/}

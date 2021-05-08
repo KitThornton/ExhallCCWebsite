@@ -6,12 +6,14 @@ import AboutTheClub from "./WebPages/AboutTheClub";
 import NavBar from "./components/Navbar";
 import Players from "./WebPages/Players";
 import Profile from "./WebPages/Profile";
+import Batting from "./WebPages/Batting";
+import Bowling from "./WebPages/Bowling";
 import { Container } from "@material-ui/core";
 
 const App = () => (
       <div style={{ padding: 0 }} >
           <Router>
-              <Container>
+              {/*<Container>*/}
                   <NavBar/>
                   <Switch>
                       <Route exact path="/" component={Home} />
@@ -20,8 +22,10 @@ const App = () => (
                       <Route exact path="/Players" component={Players} />
                       <Route exact path="/AboutTheClub" component={AboutTheClub} />
                       <Route exact path="/Profile/:id" component={Profile} />
+                      <Route exact path="/Batting/:team" component={Batting} />
+                      <Route exact path="/Bowling/:team" component={Bowling} />
                   </Switch>
-              </Container>
+              {/*</Container>*/}
           </Router>
       </div>
 );
