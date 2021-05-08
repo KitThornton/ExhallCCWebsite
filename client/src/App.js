@@ -6,19 +6,22 @@ import AboutTheClub from "./WebPages/AboutTheClub";
 import NavBar from "./components/Navbar";
 import Players from "./WebPages/Players";
 import Profile from "./WebPages/Profile";
+import { Container } from "@material-ui/core";
 
 const App = () => (
       <div style={{ padding: 0 }} >
           <Router>
-              <NavBar/>
-              <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route exact path="/Profile" component={Profile} />
-                  <Route exact path="/Home" component={Home} />
-                  <Route exact path="/Players" component={Players} />
-                  <Route exact path="/AboutTheClub" component={AboutTheClub} />
-                  <Route exact path="/Profile/:id" component={Profile} />
-              </Switch>
+              <Container>
+                  <NavBar/>
+                  <Switch>
+                      <Route exact path="/" component={Home} />
+                      <Route exact path="/Profile" component={Profile} />
+                      <Route exact path="/Home" component={Home} />
+                      <Route exact path="/Players" component={Players} />
+                      <Route exact path="/AboutTheClub" component={AboutTheClub} />
+                      <Route exact path="/Profile/:id" component={Profile} />
+                  </Switch>
+              </Container>
           </Router>
       </div>
 );
