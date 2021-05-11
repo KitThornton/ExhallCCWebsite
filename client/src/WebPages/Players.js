@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 // import {Link} from "react-router-dom";
 // import {LinkContainer} from "react-router-bootstrap";
 // import {withRouter} from 'react-router-dom';
+import PageHeader from "../components/PageHeader";
 
 class Players extends React.Component {
 
@@ -31,6 +32,10 @@ class Players extends React.Component {
     render() {
         return(
             <Container>
+                <PageHeader
+                    header = "Player Database"
+                    description = "Search via player name, view player caps and link to their profile page."
+                />
                 <div style={{ height: 600, width: '100%', padding: "10px" }}>
                     <DataGrid
                         width={"50%"}

@@ -1,75 +1,108 @@
 // Let's try creating a card group to be displayed on the home page under the first image
 import React from "react";
-import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBCol, MDBRow, MDBCardImage } from "mdbreact";
-import img from '../images/ExhallCC4.jpg';
+import {Card, CardActions, Grid, makeStyles} from "@material-ui/core";
+import img1 from '../images/ExhallCC4.jpg';
+import img2 from '../images/ExhallCC2.jpeg';
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import EqualizerIcon from '@material-ui/icons/Equalizer';
+import GroupIcon from '@material-ui/icons/Group';
+import SportsCricketIcon from '@material-ui/icons/SportsCricket';
+
+const useStyles = makeStyles({
+    root: {
+        // maxWidth: 345,
+        padding: 20
+    },
+    media: {
+        height: 300,
+    },
+});
 
 const CardGroup = () => {
+    const classes = useStyles();
+
     return(
-        // <MDBContainer>
-        <MDBRow className="mb-1">
-            <MDBCol sm="3">
-                <MDBCard className={""}>
-                    <MDBCardImage className="img-fluid" src={img}
-                                  waves
-                                  width="380"
-                    />
-                    <MDBCardBody>
-                        <MDBCardTitle>Statistics</MDBCardTitle>
-                        <MDBCardText>Some quick example text to build on the card title and make up the bulk of the card's content.</MDBCardText>
-                        {/*<MDBBtn href="#">Click</MDBBtn>*/}
-                    </MDBCardBody>
-                </MDBCard>
-            </MDBCol>
-
-            <MDBCol sm="3">
-                <MDBCard className={""}>
-                    <MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"
-                                  waves />
-                    <MDBCardBody>
-                        <MDBCardTitle>Card title</MDBCardTitle>
-                        <MDBCardText>Some quick example text to build on the card title and make up the bulk of the card's content.</MDBCardText>
-                        <MDBBtn href="#">Click</MDBBtn>
-                    </MDBCardBody>
-                </MDBCard>
-            </MDBCol>
-
-            <MDBCol col="3">
-                <MDBCard>
-                    <MDBCardImage src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg"
-                                  alt="MDBCard image cap" top hover
-                                  overlay="white-slight" />
-                    <MDBCardBody>
-                        <MDBCardTitle tag="h5">Panel title</MDBCardTitle>
-                        <MDBCardText>
-                            Some quick example text to build on the card title and make up
-                            the bulk of the card's content.
-                        </MDBCardText>
-                        <MDBBtn color="primary" size="md">
-                            read more
-                        </MDBBtn>
-                    </MDBCardBody>
-                </MDBCard>
-            </MDBCol>
-
-            <MDBCol sm="3">
-                <MDBCard>
-                    <MDBCardImage src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg"
-                                  alt="MDBCard image cap" top hover
-                                  overlay="white-slight" />
-                    <MDBCardBody>
-                        <MDBCardTitle tag="h5">Panel title</MDBCardTitle>
-                        <MDBCardText>
-                            Some quick example text to build on the card title and make up
-                            the bulk of the card's content.
-                        </MDBCardText>
-                        <MDBBtn color="primary" size="md">
-                            read more
-                        </MDBBtn>
-                    </MDBCardBody>
-                </MDBCard>
-            </MDBCol>
-        </MDBRow>
-        // </MDBContainer>
+        <Grid className={classes.root}  container spacing={8}>
+            <Grid item xs={4}>
+                <Card>
+                    <CardActionArea>
+                        <CardMedia
+                            className={classes.media}
+                            image={img2}
+                            title="PLayers"
+                        />
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="h2">
+                                Players
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+                                across all continents except Antarctica
+                            </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                        <Button href="/Players" variant="outlined" size="large" color="primary" startIcon={<GroupIcon />}>
+                            Players
+                        </Button>
+                    </CardActions>
+                </Card>
+            </Grid>
+            <Grid item xs={4}>
+                <Card>
+                    <CardActionArea>
+                        <CardMedia
+                            className={classes.media}
+                            image={img1}
+                            title="Statistics"
+                        />
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="h2">
+                                Statistics
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+                                across all continents except Antarctica
+                            </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                        <Button href="/Statistics" variant="outlined" size="large" color="primary" startIcon={<EqualizerIcon />}>
+                            Statistics
+                        </Button>
+                    </CardActions>
+                </Card>
+            </Grid>
+            <Grid item xs={4}>
+                <Card>
+                    <CardActionArea>
+                        <CardMedia
+                            className={classes.media}
+                            image={img2}
+                            title="Contemplative Reptile"
+                        />
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="h2">
+                                Awards
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+                                across all continents except Antarctica
+                            </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                        <Button href="/Awards" variant="outlined" size="large" color="primary" startIcon={<SportsCricketIcon />}>
+                            Awards
+                        </Button>
+                    </CardActions>
+                </Card>
+            </Grid>
+        </Grid>
     )
 }
 

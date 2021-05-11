@@ -8,6 +8,7 @@ import Players from "./WebPages/Players";
 import Profile from "./WebPages/Profile";
 import Batting from "./WebPages/Batting";
 import Bowling from "./WebPages/Bowling";
+import Awards from "./WebPages/Awards";
 import { Container } from "@material-ui/core";
 
 const App = () => (
@@ -24,6 +25,7 @@ const App = () => (
                       <Route exact path="/Profile/:id" component={Profile} />
                       <Route exact path="/Batting/:team" component={Batting} />
                       <Route exact path="/Bowling/:team" component={Bowling} />
+                      <Route exact path="/Awards" component={Awards} />
                   </Switch>
               {/*</Container>*/}
           </Router>

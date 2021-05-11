@@ -12,10 +12,11 @@ import img from "../images/ExhallCC1.png"
 const useStyles = makeStyles({
     root: {
         // maxWidth: 345
-        width: "100%"
+        width: "100%",
+        padding: 0
     },
     media: {
-        height: 380
+        height: 470
     }
 });
 
@@ -35,19 +36,18 @@ export default function MediaCard() {
                         Exhall and Wixford CC
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
+                        View all statistics collected from 1956 to the present day. Search via player, teams, season and award!
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
-            <Button size="small" color="primary">
-              Share
-            </Button>
-            <Button size="small" color="primary">
-              Learn More
-            </Button>
-          </CardActions>
+          {/*  <CardActions>*/}
+          {/*  <Button size="small" href="/AboutTheClub" color="primary">*/}
+          {/*    About the club*/}
+          {/*  </Button>*/}
+          {/*  <Button size="small" href="/Players" color="primary">*/}
+          {/*      Players*/}
+          {/*  </Button>*/}
+          {/*</CardActions>*/}
         </Card>
     );
 }
