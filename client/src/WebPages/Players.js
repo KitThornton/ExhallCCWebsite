@@ -1,20 +1,29 @@
-import React from "react";
+import React, { Fragment } from "react";
 import {DataGrid, GridApi, GridCellValue, GridColDef} from "@material-ui/data-grid";
-import {Container} from "react-bootstrap";
+import {ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
 import Button from "@material-ui/core/Button";
-// import {Link} from "react-router-dom";
-// import {LinkContainer} from "react-router-bootstrap";
-// import {withRouter} from 'react-router-dom';
+import BiAxialBarChart from "../components/BiAxialBarChart";
+import { Grid } from "@material-ui/core";
 import PageHeader from "../components/PageHeader";
+import Container from '@material-ui/core/Container';
 
 class Players extends React.Component {
 
-    state = {
-        players: []
-    };
+    constructor() {
+        super();
+        this.state = {view: "runs", players: []};
+        this.handleOnChange = this.handleOnChange.bind(this);
+    }
+
+    handleOnChange(e, value) {
+        if (value !== null) {
+            this.setState({ view: value });
+        }
+    }
 
     componentDidMount() {
         this.getPlayers().then(r => r);
+        this.getCareerBatting().then(r => r);
     }
 
     getPlayers = async () => {
@@ -22,7 +31,19 @@ class Players extends React.Component {
             const response = await fetch("http://localhost:4000/players/details");
             const jsonData = await response.json();
 
-            this.setState({players: jsonData.rows}, () => console.log(jsonData));
+            this.setState({players: jsonData.rows});
+
+        } catch (err) {
+            console.error(err.message);
+        }
+    };
+
+    getCareerBatting = async () => {
+        try {
+            const response = await fetch("http://localhost:4000/batting/highestCareerRuns/10");
+            const jsonData = await response.json();
+
+            this.setState({careerBatting: jsonData.rows});
 
         } catch (err) {
             console.error(err.message);
@@ -36,15 +57,44 @@ class Players extends React.Component {
                     header = "Player Database"
                     description = "Search via player name, view player caps and link to their profile page."
                 />
-                <div style={{ height: 600, width: '100%', padding: "10px" }}>
-                    <DataGrid
-                        width={"50%"}
-                        getRowId={(r) => r.playerid}
-                        rows={this.state.players}
-                        columns={columns}
-                        pageSize={40}  />
-                </div>
-
+                <Grid container spacing={1}
+                      alignItems="center"
+                      justify="center">
+                    <Grid item xs={6}>
+                        <div style={{ height: 300, width: '100%', padding: "10px" }}>
+                            <DataGrid
+                                width={"50%"}
+                                getRowId={(r) => r.playerid}
+                                rows={this.state.players}
+                                columns={columns}
+                                pageSize={40}  />
+                        </div>
+                    </Grid>
+                    <Grid item xs={1}>
+                        <ToggleButtonGroup orientation="vertical"
+                                           value={this.state.view}
+                                           // aria-checked={true}
+                                           exclusive = {true}
+                                           size = "small"
+                                           onChange={this.handleOnChange}>
+                            <ToggleButton value="runs" aria-label="runs">
+                                runs
+                            </ToggleButton>
+                            <ToggleButton value="highscore">
+                                High Score
+                            </ToggleButton>
+                            <ToggleButton value="average">
+                                average
+                            </ToggleButton>
+                            <ToggleButton value="centuries">
+                                Centuries
+                            </ToggleButton>
+                        </ToggleButtonGroup>
+                    </Grid>
+                    <Grid item xs={5}>
+                        <BiAxialBarChart rawdata={this.state.careerBatting} />
+                    </Grid>
+                </Grid>
             </Container>
         )
     }
@@ -52,7 +102,7 @@ class Players extends React.Component {
 
 const columns: GridColDef[] = [
     { field: 'playerid', headerName: 'ID', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
-    { field: 'playername', headerName: 'Player Name', flex: 1, headerAlign: 'center', align: "center"},
+    { field: 'playername', headerName: 'Name', flex: 1, headerAlign: 'center', align: "center"},
     { field: 'seasons', headerName: 'Seasons', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
     { field: 'matches', headerName: 'Matches', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
     {

@@ -50,8 +50,6 @@ class Profile extends React.Component {
 
     render() {
         return (
-            // <MuiThemeProvider theme={themePurple}>
-            //     <CssBaseline />
             <Fragment>
                 <Grid container spacing={2} style={{ height: 50, padding: "15px" }}>
                     <Grid item xs={12} >
@@ -71,20 +69,10 @@ class Profile extends React.Component {
                         <BiAxialLineChart rawdata={this.state.batting} />
                     </Grid>
                 </Grid>
-                {/*// </MuiThemeProvider>*/}
             </Fragment>
         );
     }
 }
-
-// const color = purple[500];
-// const themePurple = createMuiTheme({
-//     palette: {
-//         background: {
-//             default: color
-//         },
-//     }
-// });
 
 const columns = [
     { field: 'battingid', headerName: 'ID', type: 'number', flex: 1, headerAlign: 'center', align: "center"},

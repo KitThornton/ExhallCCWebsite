@@ -11,7 +11,10 @@ router.get("/highestCareerRuns/:count", async function(req, res){
 
     try {
         const { count } = req.params;
-        const q = `SELECT * FROM players.batting WHERE year IS NULL ORDER BY Runs DESC LIMIT ${count}`;
+        const q = `SELECT D.playerid, D.Playername, B.runs FROM players.batting B
+        INNER JOIN Players.Details D ON D.PlayerId = B.PlayerId
+        WHERE year IS NULL ORDER BY runs DESC LIMIT ${count}`;
+
         const todos = await pool.query(q);
         res.json(todos);
         console.log("Retrieved from players.batting")
