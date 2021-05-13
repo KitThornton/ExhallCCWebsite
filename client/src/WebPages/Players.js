@@ -3,9 +3,10 @@ import {DataGrid, GridApi, GridCellValue, GridColDef} from "@material-ui/data-gr
 import {ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
 import Button from "@material-ui/core/Button";
 import BiAxialBarChart from "../components/BiAxialBarChart";
-import { Grid } from "@material-ui/core";
+import { Grid, Paper } from "@material-ui/core";
 import PageHeader from "../components/PageHeader";
 import Container from '@material-ui/core/Container';
+import SearchBar from "material-ui-search-bar";
 
 class Players extends React.Component {
 
@@ -61,6 +62,19 @@ class Players extends React.Component {
                       alignItems="center"
                       justify="center">
                     <Grid item xs={6}>
+                        {/*<Paper>*/}
+                            {/*<SearchBar*/}
+                            {/*    // value={searched}*/}
+                            {/*    // onChange={(searchVal) => requestSearch(searchVal)}*/}
+                            {/*    // onCancelSearch={() => cancelSearch()}*/}
+                            {/*/>*/}
+                            {/*<DataGrid*/}
+                            {/*    width={"50%"}*/}
+                            {/*    getRowId={(r) => r.playerid}*/}
+                            {/*    rows={this.state.players}*/}
+                            {/*    columns={columns}*/}
+                            {/*    pageSize={40}  />*/}
+                        {/*</Paper>*/}
                         <div style={{ height: 300, width: '100%', padding: "10px" }}>
                             <DataGrid
                                 width={"50%"}

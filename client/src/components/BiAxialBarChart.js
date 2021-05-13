@@ -6,6 +6,11 @@ import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Resp
 export default class BiAxialBarChart extends React.Component {
 
     render() {
+
+        function CustomisedTickAxis() {
+            return { fontSize: '20px', width: '90px', wordWrap: 'break-word' };
+        }
+
         return (
             // <ResponsiveContainer width="100%" height="100%">
                 <BarChart
@@ -16,14 +21,19 @@ export default class BiAxialBarChart extends React.Component {
                         top: 5,
                         right: 30,
                         left: 20,
-                        bottom: 5,
+                        bottom: 65,
                     }}
                 >
                     <CartesianGrid strokeDasharray="5 5" />
-                    <XAxis dataKey="playername" />
+                    <XAxis
+                        dataKey="playername"
+                        interval={0}
+                        tickFormatter={<CustomisedTickAxis />}
+                        angle={-45}
+                        textAnchor='end'/>
                     <YAxis />
                     <Tooltip />
-                    <Legend />
+                    {/*<Legend />*/}
                     <Bar dataKey="runs" fill="#8884d8" />
                     {/*<Bar dataKey="uv" fill="#82ca9d" />*/}
                 </BarChart>
@@ -31,5 +41,3 @@ export default class BiAxialBarChart extends React.Component {
         );
     }
 }
-
-
