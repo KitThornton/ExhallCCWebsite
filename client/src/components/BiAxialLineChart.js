@@ -10,7 +10,7 @@ export default class BiAxialLineChart extends React.Component {
                 height={300}
                 data={this.props.rawdata}
                 margin={{
-                    top: 50,
+                    top: 100,
                     right: 30,
                     left: 20,
                     bottom: 5,

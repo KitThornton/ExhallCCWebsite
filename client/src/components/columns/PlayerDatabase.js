@@ -8,10 +8,13 @@ const columns: GridColDef[] = [
     { field: 'seasons', headerName: 'Seasons', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
     { field: 'matches', headerName: 'Matches', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
     {
-        field: "",
-        headerName: "Action",
+        field: "test",
+        headerName: " ",
         filter: "disabled",
         disableClickEventBubbling: true,
+        flex: 0.7,
+        headerAlign: 'center',
+        align: "center",
         renderCell: (params) => {
 
             const onClick = () => {

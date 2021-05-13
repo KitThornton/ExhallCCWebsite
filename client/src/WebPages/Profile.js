@@ -1,16 +1,9 @@
-// So here will be the profile page for the player..
-// We'll need a list of all the stuff tat we're gonna wanna display
 import React, { Fragment } from 'react';
-import { Container, Grid } from "@material-ui/core";
-// import purple from '@material-ui/core/colors/purple';
-// import { createMuiTheme, makeStyles, MuiThemeProvider } from '@material-ui/core/styles';
-import {DataGrid,
-    // GridApi,
-    // GridCellValue,
-    // GridColDef
-} from "@material-ui/data-grid";
-// import CssBaseline from "@material-ui/core/CssBaseline";
+import { Grid } from "@material-ui/core";
+import { DataGrid } from "@material-ui/data-grid";
+import Container from '@material-ui/core/Container';
 import BiAxialLineChart from "../components/BiAxialLineChart";
+import PageHeader from "../components/PageHeader";
 
 class Profile extends React.Component {
 
@@ -21,19 +14,6 @@ class Profile extends React.Component {
 
     componentDidMount() {
         this.getBatting().then(r => r);
-        this.getPlayerName().then(r => r);
-    }
-
-    getPlayerName = async () => {
-        try {
-            const response = await fetch(`http://localhost:4000/players/details/${this.state.id}`);
-            const jsonData = await response.json();
-
-            this.setState({playerName: jsonData.rows[0]["playername"]});
-
-        } catch (err) {
-            console.error(err.message);
-        }
     }
 
     getBatting = async () => {
@@ -41,7 +21,7 @@ class Profile extends React.Component {
             const response = await fetch(`http://localhost:4000/batting/seasons/${this.state.id}`);
             const jsonData = await response.json();
 
-            this.setState({batting: jsonData.rows}, () => console.log(jsonData));
+            this.setState({batting: jsonData.rows, playerName: jsonData.rows[0]["playername"]});
 
         } catch (err) {
             console.error(err.message);
@@ -50,13 +30,15 @@ class Profile extends React.Component {
 
     render() {
         return (
-            <Fragment>
+            <Container>
                 <Grid container spacing={2} style={{ height: 50, padding: "15px" }}>
                     <Grid item xs={12} >
-                        {this.state.playerName}
+                        <PageHeader
+                            header={this.state.playerName}
+                        />
                     </Grid>
                 </Grid>
-                <Grid container spacing={2} style={{ height: 600, padding: "15px" }}>
+                <Grid container spacing={2} style={{ height: 600, padding: "25px" }}>
                     <Grid item xs={8} >
                         <DataGrid
                             // width={"50%"}
@@ -69,16 +51,14 @@ class Profile extends React.Component {
                         <BiAxialLineChart rawdata={this.state.batting} />
                     </Grid>
                 </Grid>
-            </Fragment>
+            </Container>
         );
     }
 }
 
 const columns = [
-    { field: 'battingid', headerName: 'ID', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
+    { field: 'battingid', headerName: 'ID', type: 'number', flex: 0.5, headerAlign: 'center', align: "center"},
     { field: 'year', headerName: 'Year',  flex: 1, headerAlign: 'center', align: "center"},
-    // { field: 'playername', headerName: 'Player Name', type: 'text', flex: 1, headerAlign: 'center', align: "center"},
-    // { field: 'playerid', headerName: 'playerid', flex: 1, headerAlign: 'center', align: "center"},
     { field: 'matches', headerName: 'Matches', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
     { field: 'runs', headerName: 'Runs', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
     { field: 'average', headerName: 'Average', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
