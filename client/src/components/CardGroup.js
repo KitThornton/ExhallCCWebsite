@@ -10,7 +10,8 @@ import SportsCricketIcon from '@material-ui/icons/SportsCricket';
 const useStyles = makeStyles({
     root: {
         // maxWidth: 345,
-        padding: 20
+        padding: 20,
+        minHeight: 700
     },
     media: {
         height: 300,

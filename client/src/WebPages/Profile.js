@@ -1,9 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Grid } from "@material-ui/core";
 import { DataGrid } from "@material-ui/data-grid";
 import Container from '@material-ui/core/Container';
 import BiAxialLineChart from "../components/BiAxialLineChart";
 import PageHeader from "../components/PageHeader";
+import PlayerProfileCard from '../components/PlayerProfileCard';
+
 
 class Profile extends React.Component {
 
@@ -37,18 +39,19 @@ class Profile extends React.Component {
                             header={this.state.playerName}
                         />
                     </Grid>
-                </Grid>
-                <Grid container spacing={2} style={{ height: 600, padding: "25px" }}>
-                    <Grid item xs={8} >
+                    <Grid item xs={4}>
+                        <PlayerProfileCard playername={this.state.playerName} />
+                    </Grid>
+                    <Grid item xs={4}>
+                        <BiAxialLineChart rawdata={this.state.batting} />
+                    </Grid>
+                    <Grid item xs={12} style={{ height: 600, padding: "25px" }}>
                         <DataGrid
                             // width={"50%"}
                             getRowId={(r) => r.battingid}
                             rows={Array.from(this.state.batting)}
                             columns={columns}
                             pageSize={40}  />
-                    </Grid>
-                    <Grid item xs={4}>
-                        <BiAxialLineChart rawdata={this.state.batting} />
                     </Grid>
                 </Grid>
             </Container>

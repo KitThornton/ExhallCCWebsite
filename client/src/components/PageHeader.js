@@ -38,7 +38,5 @@ export default class PageHeader extends React.Component {
             </Fragment>
         );
     }
-
-
 }
 
