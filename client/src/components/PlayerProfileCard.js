@@ -55,7 +55,9 @@ const PlayerProfileCard = (props) => {
                         <Typography variant="body2" color="textSecondary" component="p">
                             <Grid container spacing={2}>
                                 <Grid item xs={6}>
-                                    Debut: {new Date().toLocaleDateString() } {<br/>}
+                                    Debut:
+                                    {/*{new Date().toLocaleDateString() } */}
+                                    {<br/>}
                                     Seasons:    {<br/>}
                                     Matches:    {<br/>}
                                 </Grid>
