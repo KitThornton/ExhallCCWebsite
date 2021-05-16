@@ -37,8 +37,10 @@ const CardGroup = () => {
                                     Players
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                                    across all continents except Antarctica
+                                    Check out the player database with .
+                                    {<br/>}
+                                    {<br/>}
+                                    {<br/>}
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -64,8 +66,8 @@ const CardGroup = () => {
                                     Statistics
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                                    across all continents except Antarctica
+                                    Check out the bowling, batting and fielding statistics from 1956 to the present day
+                                    and see how players have developed through the seasons.
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -91,8 +93,10 @@ const CardGroup = () => {
                                     Awards
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                                    across all continents except Antarctica
+                                    View awards handed out at the club and league level.
+                                    {<br/>}
+                                    {<br/>}
+                                    {<br/>}
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
