@@ -8,7 +8,6 @@ function Home() {
         <Fragment>
             <HomeCard />
             <CardGroup />
-            <Footer />
         </Fragment>
     );
 }

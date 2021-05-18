@@ -9,7 +9,7 @@ import Profile from "./WebPages/Profile";
 import Batting from "./WebPages/Batting";
 import Bowling from "./WebPages/Bowling";
 import Awards from "./WebPages/Awards";
-import { Container } from "@material-ui/core";
+import Footer from "./components/Footer"
 
 const App = () => (
       <div style={{ padding: 0 }} >
@@ -27,6 +27,7 @@ const App = () => (
                       <Route exact path="/Bowling/:team" component={Bowling} />
                       <Route exact path="/Awards" component={Awards} />
                   </Switch>
+                <Footer/>
               {/*</Container>*/}
           </Router>
       </div>

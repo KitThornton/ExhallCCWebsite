@@ -1,7 +1,7 @@
 import React from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import BiAxialBarChart from "../components/BiAxialBarChart";
-import { Grid } from "@material-ui/core";
+import {Grid, withStyles} from "@material-ui/core";
 import PageHeader from "../components/PageHeader";
 import Container from '@material-ui/core/Container';
 import BattingButtonGroup from "../components/BattingButtonGroup";
@@ -57,24 +57,26 @@ class Players extends React.Component {
     };
 
     render() {
+
+        const { classes } = this.props;
+
         return(
-            <Container>
+            <Container className={classes.root}>
                 <PageHeader
                     header = "Player Database"
                     description = "Search via player name, view player caps and link to their profile page."
                 />
-                <Grid container spacing={1}
+                <Grid container spacing={2}
                       alignItems="center"
                       justify="center">
                     <Grid item xs={6}>
-                        <Grid style={{ height: 400, width: '100%', padding: "10px" }}>
-                            <DataGrid
-                                width={"50%"}
-                                getRowId={(r) => r.playerid}
-                                rows={this.state.players}
-                                columns={this.state.columns}
-                                pageSize={40}  />
-                        </Grid>
+                        <DataGrid
+                            className={classes.table}
+                            width={"50%"}
+                            getRowId={(r) => r.playerid}
+                            rows={this.state.players}
+                            columns={this.state.columns}
+                            pageSize={40}  />
                     </Grid>
                     <Grid item xs={1}>
                         <BattingButtonGroup />
@@ -89,5 +91,20 @@ class Players extends React.Component {
     }
 }
 
-export default Players;
+const styles = theme => ({
+    root: {
+        // maxWidth: 345,
+        padding: 20,
+        height: 800
+    },
+    table: {
+        height: 300,
+    },
+    grid: {
+        minHeight: 500,
+        width: '100%',
+        padding: "10px"
+    }
+});
 
+export default withStyles(styles)(Players);

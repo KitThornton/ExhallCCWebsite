@@ -1,21 +1,26 @@
 import React from 'react';
-import { Grid } from "@material-ui/core";
+import { Grid, withStyles } from "@material-ui/core";
 import { DataGrid } from "@material-ui/data-grid";
 import Container from '@material-ui/core/Container';
 import BiAxialLineChart from "../components/BiAxialLineChart";
 import PageHeader from "../components/PageHeader";
 import PlayerProfileCard from '../components/PlayerProfileCard';
-
+import Columns from "../components/columns/ProfileBatting"
 
 class Profile extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {batting: "", id: this.props.match.params.id, playerName: ""}
+        this.state = {batting: "",
+            id: this.props.match.params.id,
+            playerName: "",
+            columns: ""
+        }
     }
 
     componentDidMount() {
         this.getBatting().then(r => r);
+        this.setState({columns: Columns});
     }
 
     getBatting = async () => {
@@ -31,8 +36,11 @@ class Profile extends React.Component {
     };
 
     render() {
+
+        const { classes } = this.props;
+
         return (
-            <Container>
+            <Container className={classes.root}>
                 <Grid container spacing={2} style={{ height: 50, padding: "15px" }}>
                     <Grid item xs={12} >
                         <PageHeader
@@ -50,7 +58,7 @@ class Profile extends React.Component {
                             // width={"50%"}
                             getRowId={(r) => r.battingid}
                             rows={Array.from(this.state.batting)}
-                            columns={columns}
+                            columns={this.state.columns}
                             pageSize={40}  />
                     </Grid>
                 </Grid>
@@ -59,15 +67,20 @@ class Profile extends React.Component {
     }
 }
 
-const columns = [
-    { field: 'battingid', headerName: 'ID', type: 'number', flex: 0.5, headerAlign: 'center', align: "center"},
-    { field: 'year', headerName: 'Year',  flex: 1, headerAlign: 'center', align: "center"},
-    { field: 'matches', headerName: 'Matches', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
-    { field: 'runs', headerName: 'Runs', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
-    { field: 'average', headerName: 'Average', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
-    { field: 'fifties', headerName: 'Fifties', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
-    { field: 'hundreds', headerName: 'Hundreds', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
-    { field: 'highscore', headerName: 'Highscore', type: 'number', flex: 1, headerAlign: 'center', align: "center"}
-];
+const styles = theme => ({
+    root: {
+        // maxWidth: 345,
+        padding: 10,
+        height: 1300
+    },
+    table: {
+        height: 300,
+    },
+    grid: {
+        minHeight: 500,
+        width: '100%',
+        padding: "10px"
+    }
+});
 
-export default Profile;
+export default withStyles(styles)(Profile);
