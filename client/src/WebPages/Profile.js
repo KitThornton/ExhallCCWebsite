@@ -6,6 +6,7 @@ import BiAxialLineChart from "../components/BiAxialLineChart";
 import PageHeader from "../components/PageHeader";
 import PlayerProfileCard from '../components/PlayerProfileCard';
 import Columns from "../components/columns/ProfileBatting"
+import PlayerPieChart from "../components/PlayerPieChart";
 
 class Profile extends React.Component {
 
@@ -52,6 +53,9 @@ class Profile extends React.Component {
                     </Grid>
                     <Grid item xs={4}>
                         <BiAxialLineChart rawdata={this.state.batting} />
+                    </Grid>
+                    <Grid item xs={4}>
+                        <PlayerPieChart rawdata={this.state.batting} />
                     </Grid>
                     <Grid item xs={12} style={{ height: 600, padding: "25px" }}>
                         <DataGrid

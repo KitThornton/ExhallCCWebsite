@@ -7,6 +7,7 @@ import Container from '@material-ui/core/Container';
 import BattingButtonGroup from "../components/BattingButtonGroup";
 import Columns from "../components/columns/PlayerDatabase";
 import BowlingButtonGroup from "../components/BowlingButtonGroup";
+import PlayerPieChart from "../components/PlayerPieChart"
 
 class Players extends React.Component {
 
@@ -93,7 +94,7 @@ class Players extends React.Component {
                             columns={this.state.columns}
                             pageSize={40}  />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={6} className={classes.table}>
 
                     </Grid>
 
@@ -107,7 +108,6 @@ class Players extends React.Component {
                     {/*    <h4 style={{ align: "centre" }}>Career Batting</h4>*/}
                         <BiAxialBarChart rawdata={this.state.data} yaxis={"runs"} />
                     </Grid>
-
                     <Grid item xs={4}>
                         <div className={classes.div} >
                             <BowlingButtonGroup />
