@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-    Button,
     Card,
     CardActionArea,
     CardActions,
@@ -11,8 +10,6 @@ import {
     Typography, Avatar, CardHeader, Grid
 } from "@material-ui/core";
 import avatar from "../images/avatar.png";
-import GroupIcon from "@material-ui/icons/Group";
-// import blue from
 import blue from '@material-ui/core/colors/blue';
 
 const useStyles = makeStyles({

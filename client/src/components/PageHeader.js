@@ -2,25 +2,9 @@
 // definitely changed later.
 import React, { Fragment } from "react";
 import { Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+// import { makeStyles } from "@material-ui/core/styles";
 
 export default class PageHeader extends React.Component {
-
-    constructor() {
-        super();
-    }
-
-    useStyles = makeStyles({
-        root: {
-            // maxWidth: 345
-            width: "100%",
-            padding: 0
-        },
-        media: {
-            height: 470
-        }
-    });
-
 
     render() {
 
@@ -39,4 +23,3 @@ export default class PageHeader extends React.Component {
         );
     }
 }
-

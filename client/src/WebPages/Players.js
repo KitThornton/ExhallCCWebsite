@@ -1,13 +1,12 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { DataGrid } from "@material-ui/data-grid";
-import BiAxialBarChart from "../components/BiAxialBarChart";
-import {Grid, withStyles} from "@material-ui/core";
-import PageHeader from "../components/PageHeader";
+import {Grid, withStyles } from "@material-ui/core";
 import Container from '@material-ui/core/Container';
+import BiAxialBarChart from "../components/graphs/BiAxialBarChart";
 import BattingButtonGroup from "../components/BattingButtonGroup";
 import Columns from "../components/columns/PlayerDatabase";
+import PageHeader from "../components/PageHeader";
 import BowlingButtonGroup from "../components/BowlingButtonGroup";
-import PlayerPieChart from "../components/PlayerPieChart"
 
 class Players extends React.Component {
 

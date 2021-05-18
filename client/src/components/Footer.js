@@ -1,7 +1,7 @@
 import React from "react";
-import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
+// import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 import { Grid } from "@material-ui/core";
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
 import { withStyles } from '@material-ui/core/styles'
 import grey from '@material-ui/core/colors/grey';
 

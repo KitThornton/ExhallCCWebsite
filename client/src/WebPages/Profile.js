@@ -2,11 +2,11 @@ import React from 'react';
 import { Grid, withStyles } from "@material-ui/core";
 import { DataGrid } from "@material-ui/data-grid";
 import Container from '@material-ui/core/Container';
-import BiAxialLineChart from "../components/BiAxialLineChart";
+import BiAxialLineChart from "../components/graphs/BiAxialLineChart";
 import PageHeader from "../components/PageHeader";
 import PlayerProfileCard from '../components/PlayerProfileCard';
 import Columns from "../components/columns/ProfileBatting"
-import PlayerPieChart from "../components/PlayerPieChart";
+import PlayerPieChart from "../components/graphs/PlayerPieChart";
 
 class Profile extends React.Component {
 

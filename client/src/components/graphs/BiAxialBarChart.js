@@ -1,13 +1,9 @@
 // Here we'll have a barchart where we pass in the the data source.
 
 import React  from 'react';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, } from 'recharts';
 
 export default class BiAxialBarChart extends React.Component {
-
-    constructor() {
-        super();
-    }
 
     render() {
 
