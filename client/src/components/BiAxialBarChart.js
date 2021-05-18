@@ -5,6 +5,10 @@ import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Resp
 
 export default class BiAxialBarChart extends React.Component {
 
+    constructor() {
+        super();
+    }
+
     render() {
 
         function CustomisedTickAxis() {
@@ -14,7 +18,7 @@ export default class BiAxialBarChart extends React.Component {
         return (
             // <ResponsiveContainer width="100%" height="100%">
                 <BarChart
-                    width={500}
+                    width={450}
                     height={300}
                     data={this.props.rawdata}
                     margin={{
@@ -34,7 +38,7 @@ export default class BiAxialBarChart extends React.Component {
                     <YAxis />
                     <Tooltip />
                     {/*<Legend />*/}
-                    <Bar dataKey="runs" fill="#8884d8" />
+                    <Bar dataKey={this.props.yaxis} fill="#8884d8" />
                     {/*<Bar dataKey="uv" fill="#82ca9d" />*/}
                 </BarChart>
             // </ResponsiveContainer>

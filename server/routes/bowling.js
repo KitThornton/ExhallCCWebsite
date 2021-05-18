@@ -11,7 +11,10 @@ router.get("/CareerWickets/:count", async function(req, res){
 
     try {
         const { count } = req.params;
-        const q = `SELECT * FROM players.bowling WHERE year IS NULL ORDER BY Wickets DESC LIMIT ${count}`;
+        const q = `SELECT D.playerid, D.Playername, B.wickets FROM players.bowling B
+                   INNER JOIN Players.Details D ON D.PlayerId = B.PlayerId
+                    WHERE year IS NULL ORDER BY Wickets DESC LIMIT ${count}`;
+
         const todos = await pool.query(q);
         res.json(todos);
         console.log("Retrieved from players.bowling")

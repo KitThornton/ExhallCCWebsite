@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import BiAxialBarChart from "../components/BiAxialBarChart";
 import {Grid, withStyles} from "@material-ui/core";
@@ -6,17 +6,19 @@ import PageHeader from "../components/PageHeader";
 import Container from '@material-ui/core/Container';
 import BattingButtonGroup from "../components/BattingButtonGroup";
 import Columns from "../components/columns/PlayerDatabase";
+import BowlingButtonGroup from "../components/BowlingButtonGroup";
 
 class Players extends React.Component {
 
     constructor() {
         super();
-        this.state = {view: "runs", players: [], columns:[], data:[]};
+        this.state = {view: "runs", players: [], columns:[], data:[], bowling: []};
     }
 
     componentDidMount() {
         this.getPlayers().then(r => r);
         this.getCareerBatting().then(r => r);
+        this.getCareerWickets().then(r => r);
         this.setState({columns: Columns})
     }
 
@@ -44,6 +46,19 @@ class Players extends React.Component {
         }
     };
 
+    getCareerWickets = async () => {
+      try {
+
+          const response = await fetch("http://localhost:4000/bowling/CareerWickets/10");
+          const jsonData = await response.json();
+
+          this.setState({bowling: jsonData.rows});
+
+      }  catch (err) {
+          console.error(err.message);
+      }
+    };
+
     getCareerHighScores = async () => {
         try {
             const response = await fetch("http://localhost:4000/batting/CareerHighScores/10");
@@ -66,7 +81,7 @@ class Players extends React.Component {
                     header = "Player Database"
                     description = "Search via player name, view player caps and link to their profile page."
                 />
-                <Grid container spacing={2}
+                <Grid container spacing={5}
                       alignItems="center"
                       justify="center">
                     <Grid item xs={6}>
@@ -78,12 +93,41 @@ class Players extends React.Component {
                             columns={this.state.columns}
                             pageSize={40}  />
                     </Grid>
-                    <Grid item xs={1}>
-                        <BattingButtonGroup />
+                    <Grid item xs={6}>
+
                     </Grid>
-                    <Grid item xs={5}>
-                        <h4 style={{ align: "centre" }}>Career Batting</h4>
-                        <BiAxialBarChart rawdata={this.state.data} />
+
+                    {/*    New row    */}
+                    <Grid item xs={4}>
+                        <div className={classes.div} >
+                            <BattingButtonGroup />
+                        </div>
+                    {/*</Grid>*/}
+                    {/*<Grid item xs={5}>*/}
+                    {/*    <h4 style={{ align: "centre" }}>Career Batting</h4>*/}
+                        <BiAxialBarChart rawdata={this.state.data} yaxis={"runs"} />
+                    </Grid>
+
+                    <Grid item xs={4}>
+                        <div className={classes.div} >
+                            <BowlingButtonGroup />
+                        </div>
+
+                    {/*</Grid>*/}
+                    {/*<Grid item xs={5}>*/}
+                    {/*    <h4 style={{ align: "centre" }}>Career Bowling</h4>*/}
+                        <BiAxialBarChart rawdata={this.state.bowling} yaxis="wickets" />
+                    </Grid>
+
+                    <Grid item xs={4}>
+                        <div className={classes.div} >
+                            <BowlingButtonGroup />
+                        </div>
+
+                        {/*</Grid>*/}
+                        {/*<Grid item xs={5}>*/}
+                        {/*    <h4 style={{ align: "centre" }}>Career Bowling</h4>*/}
+                        <BiAxialBarChart rawdata={this.state.bowling} yaxis="wickets" />
                     </Grid>
                 </Grid>
             </Container>
@@ -95,7 +139,7 @@ const styles = theme => ({
     root: {
         // maxWidth: 345,
         padding: 20,
-        height: 800
+        height: 900
     },
     table: {
         height: 300,
@@ -104,6 +148,11 @@ const styles = theme => ({
         minHeight: 500,
         width: '100%',
         padding: "10px"
+    },
+    div: {
+        padding: 10,
+        alignItems: "center",
+        justifyContent: "center"
     }
 });
 

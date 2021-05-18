@@ -1,7 +1,7 @@
 import React from 'react';
 import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
 
-export default class BattingButtonGroup extends React.Component {
+export default class BowlingButtonGroup extends React.Component {
 
     constructor() {
         super();
@@ -13,28 +13,7 @@ export default class BattingButtonGroup extends React.Component {
         if (value !== null) {
             this.setState({ view: value });
         }
-
-        // Here, let's change the data for the
-        switch (value) {
-            case "highscore":
-                this.getCareerHighScores().then(r => r);
-                break;
-            default:
-                break;
-        }
     }
-
-    getCareerHighScores = async () => {
-        try {
-            const response = await fetch("http://localhost:4000/batting/CareerHighScores/10");
-            const jsonData = await response.json();
-
-            this.setState({data: jsonData.rows});
-
-        } catch (err) {
-            console.error(err.message);
-        }
-    };
 
     render() {
         return (
@@ -42,21 +21,22 @@ export default class BattingButtonGroup extends React.Component {
                                value={this.state.view}
                                exclusive = {true}
                                size = "small"
-                               onChange={this.handleOnChange}>
+                               onChange={this.handleOnChange}
+            >
                 <ToggleButton value="caps">
-                    caps
+                    Overs
                 </ToggleButton>
                 <ToggleButton value="runs" aria-label="runs">
-                    runs
-                </ToggleButton>
-                <ToggleButton value="highscore">
-                    High Score
+                    Wickets
                 </ToggleButton>
                 <ToggleButton value="average">
-                    average
+                    5 Wickets
                 </ToggleButton>
                 <ToggleButton value="centuries">
-                    Centuries
+                    Best Figures
+                </ToggleButton>
+                <ToggleButton value="highscore">
+                    Average
                 </ToggleButton>
             </ToggleButtonGroup>
         );
