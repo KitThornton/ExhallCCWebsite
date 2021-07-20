@@ -92,4 +92,26 @@ router.get("/career/:id", async function(req, res){
     }
 });
 
+/*
+    Get career batting stats by player id
+ */
+router.get("/seasons/:id", async function(req, res){
+
+    try {
+        // If it can be parsed then go by id, otherwise name
+        const { id } = req.params;
+
+        const q = `SELECT * FROM players.bowling B
+        INNER JOIN Players.Details D ON D.PlayerId = B.PlayerId
+        WHERE year IS NOT NULL AND B.playerid = ${id}`;
+
+        const todos = await pool.query(q);
+        res.json(todos);
+        console.log(`Retrieved season stats from players.bowling for player ${id}`)
+
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
 module.exports = router;

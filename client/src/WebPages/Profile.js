@@ -5,27 +5,28 @@ import Container from '@material-ui/core/Container';
 import BiAxialLineChart from "../components/graphs/BiAxialLineChart";
 import PageHeader from "../components/PageHeader";
 import PlayerProfileCard from '../components/PlayerProfileCard';
-import Columns from "../components/columns/ProfileBatting"
+import battingColumns from "../components/columns/ProfileBatting"
 import PlayerPieChart from "../components/graphs/PlayerPieChart";
+import DisciplineButton from "../components/DisciplineButton";
 
 class Profile extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            batting: "",
             id: this.props.match.params.id,
             playerName: "",
             columns: "",
             debut: "",
-            profile: ""
+            profile: "",
+            data: ""
         }
     }
 
     componentDidMount() {
         this.getBatting().then(r => r);
         this.getPlayerProfile().then(r => r);
-        this.getPlayerDebut().then(r => r);
+        // this.getPlayerDebut().then(r => r);
         this.setState({columns: Columns});
     }
 
@@ -34,7 +35,7 @@ class Profile extends React.Component {
             const response = await fetch(`http://localhost:4000/batting/seasons/${this.state.id}`);
             const jsonData = await response.json();
 
-            this.setState({batting: jsonData.rows, playerName: jsonData.rows[0]["playername"]});
+            this.setState({data: jsonData.rows, playerName: jsonData.rows[0]["playername"]});
 
         } catch (err) {
             console.error(err.message);
@@ -53,17 +54,34 @@ class Profile extends React.Component {
         }
     };
 
-    getPlayerDebut = async () => {
-        try {
-            const response = await fetch(`http://localhost:4000/players/debut/${this.state.id}`);
-            const jsonData = await response.json();
+    handleDataChange = data => {
+        this.setState( { columns:  })
+        this.setState({ data })
+    }
 
-            this.setState({debut: jsonData.rows});
+    // getPlayerDebut = async () => {
+    //     try {
+    //         const response = await fetch(`http://localhost:4000/players/debut/${this.state.id}`);
+    //         const jsonData = await response.json();
+    //
+    //         this.setState({debut: jsonData.rows});
+    //
+    //     } catch (err) {
+    //         console.error(err.message);
+    //     }
+    // };
 
-        } catch (err) {
-            console.error(err.message);
-        }
-    };
+    // getTableData = async () => {
+    //     try {
+    //         const response = await fetch(`http://localhost:4000/batting/seasons/${this.state.id}`);
+    //         const jsonData = await response.json();
+    //
+    //         this.setState({batting: jsonData.rows, playerName: jsonData.rows[0]["playername"]});
+    //
+    //     } catch (err) {
+    //         console.error(err.message);
+    //     }
+    // };
 
     render() {
 
@@ -90,10 +108,12 @@ class Profile extends React.Component {
                         <PlayerPieChart rawdata={this.state.batting} />
                     </Grid>
                     <Grid item xs={12} style={{ height: 600, padding: "25px" }}>
+                        <DisciplineButton data={this.state.data} onDataChange={this.handleDataChange} id={this.state.id}/>
                         <DataGrid
                             // width={"50%"}
                             getRowId={(r) => r.battingid}
-                            rows={Array.from(this.state.batting)}
+                            // rows={Array.from(this.state.batting)}
+                            rows={Array.from(this.state.data)}
                             columns={this.state.columns}
                             pageSize={40}  />
                     </Grid>
