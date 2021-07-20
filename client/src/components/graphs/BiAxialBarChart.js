@@ -1,5 +1,4 @@
 // Here we'll have a barchart where we pass in the the data source.
-
 import React  from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, } from 'recharts';
 
@@ -12,32 +11,30 @@ export default class BiAxialBarChart extends React.Component {
         }
 
         return (
-            // <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                    width={450}
-                    height={300}
-                    data={this.props.rawdata}
-                    margin={{
-                        top: 5,
-                        right: 30,
-                        left: 20,
-                        bottom: 65,
-                    }}
-                >
-                    <CartesianGrid strokeDasharray="5 5" />
-                    <XAxis
-                        dataKey="playername"
-                        interval={0}
-                        tickFormatter={<CustomisedTickAxis />}
-                        angle={-45}
-                        textAnchor='end'/>
-                    <YAxis />
-                    <Tooltip />
-                    {/*<Legend />*/}
-                    <Bar dataKey={this.props.yaxis} fill="#8884d8" />
-                    {/*<Bar dataKey="uv" fill="#82ca9d" />*/}
-                </BarChart>
-            // </ResponsiveContainer>
+            <BarChart
+                width={450}
+                height={300}
+                data={this.props.rawdata}
+                margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 65,
+                }}
+            >
+                <CartesianGrid strokeDasharray="5 5" />
+                <XAxis
+                    dataKey="playername"
+                    interval={0}
+                    tickFormatter={<CustomisedTickAxis />}
+                    angle={-45}
+                    textAnchor='end'/>
+                <YAxis />
+                <Tooltip />
+                {/*<Legend />*/}
+                <Bar dataKey={this.props.yaxis} fill="#8884d8" />
+                {/*<Bar dataKey="uv" fill="#82ca9d" />*/}
+            </BarChart>
         );
     }
 }

@@ -1,16 +1,8 @@
 import React from 'react';
-import {
-    Card,
-    CardActionArea,
-    CardActions,
-    CardContent,
-    CardMedia,
-    makeStyles,
-    Paper,
-    Typography, Avatar, CardHeader, Grid
-} from "@material-ui/core";
-import avatar from "../images/avatar.png";
+import { Card, CardActionArea, CardActions, CardContent, CardMedia, makeStyles, Paper,
+    Typography, Avatar, CardHeader, Grid } from "@material-ui/core";
 import blue from '@material-ui/core/colors/blue';
+import avatar from "../images/avatar.png";
 
 const useStyles = makeStyles({
     media: {
@@ -25,6 +17,7 @@ const PlayerProfileCard = (props) => {
 
     const classes = useStyles();
     const playerName = props.playername;
+    // const debut = props.debut[0]["debut"];
 
     return(
         <Paper elevation={3}>
@@ -37,13 +30,12 @@ const PlayerProfileCard = (props) => {
                     title={playerName}
                     subheader="Debut: September 14, 2016"
                 >
-                    KT
                 </CardHeader>
                 <CardActionArea>
                     <CardMedia
                         className={classes.media}
                         image={avatar}
-                        title="PLayers"
+                        title="Players"
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
@@ -52,16 +44,14 @@ const PlayerProfileCard = (props) => {
                         <Typography variant="body2" color="textSecondary" component="p">
                             <Grid container spacing={2}>
                                 <Grid item xs={6}>
-                                    Debut:
-                                    {/*{new Date().toLocaleDateString() } */}
-                                    {<br/>}
-                                    Seasons:    {<br/>}
-                                    Matches:    {<br/>}
+                                    {/*Debut:        {<br/>} { props.debut[0]["debut"] }*/}
+                                    {/*Seasons:       {<br/>} { props.debut[0]["seasons"] }*/}
+                                    {/*Matches:     {<br/>}   { props.profileData[0]["matches"] }*/}
                                 </Grid>
                                 <Grid item xs={6}>
-                                    Runs:   {<br/>}
-                                    Wickets:    {<br/>}
-                                    Catches:    {<br/>}
+                                    {/*Runs:    {<br/>} { props.profileData[0]["runs"] }*/}
+                                    {/*Wickets:        {<br/>} { props.profileData[0]["wickets"] }*/}
+                                    {/*Catches:    {<br/>} { props.profileData[0]["catches"] }*/}
                                 </Grid>
                             </Grid>
                         </Typography>

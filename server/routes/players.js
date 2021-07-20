@@ -39,6 +39,55 @@ router.get("/details/:id", async function(req, res){
     }
 });
 
+/*
+    Return the data for the player profile card
+*/
+router.get("/profile/:id", async function(req, res){
+
+    try {
+        const { id } = req.params;
+        const q = `SELECT D.playerid, B.matches, B.runs, BO.wickets, F.catches
+                   FROM players.details D
+                        INNER JOIN players.batting B ON D.playerid = B.playerid AND B.year IS NULL
+                        INNER JOIN players.bowling BO ON D.playerid = BO.playerid AND BO.year IS NULL
+                        INNER JOIN players.fielding F ON D.playerid = F.playerid AND F.year IS NULL
+                   WHERE D.playerid = ${id}
+                   GROUP BY D.playerid, B.matches, B.year, B.runs, BO.wickets, F.catches`;
+
+        const todos = await pool.query(q)
+        res.json(todos);
+
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+/*
+    Return the debut and  for the player profile card
+*/
+router.get("/debut/:id", async function(req, res){
+
+    try {
+        const { id } = req.params;
+        const q = `SELECT  D.playerid, MIN(B.year) AS Debut, COUNT(DISTINCT(B.year)) AS Seasons
+                   FROM players.details D
+                        INNER JOIN players.batting B ON D.playerid = B.playerid
+                   WHERE  D.playerid = ${id}
+                   GROUP BY D.playerid`;
+
+        const todos = await pool.query(q)
+        res.json(todos);
+
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+
+
+
+
+
 /* Further work:
     -> Return trophies, oldest and youngest etc.
  */

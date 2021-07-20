@@ -12,15 +12,20 @@ class Profile extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {batting: "",
+        this.state = {
+            batting: "",
             id: this.props.match.params.id,
             playerName: "",
-            columns: ""
+            columns: "",
+            debut: "",
+            profile: ""
         }
     }
 
     componentDidMount() {
         this.getBatting().then(r => r);
+        this.getPlayerProfile().then(r => r);
+        this.getPlayerDebut().then(r => r);
         this.setState({columns: Columns});
     }
 
@@ -30,6 +35,30 @@ class Profile extends React.Component {
             const jsonData = await response.json();
 
             this.setState({batting: jsonData.rows, playerName: jsonData.rows[0]["playername"]});
+
+        } catch (err) {
+            console.error(err.message);
+        }
+    };
+
+    getPlayerProfile = async () => {
+        try {
+            const response = await fetch(`http://localhost:4000/players/profile/${this.state.id}`);
+            const jsonData = await response.json();
+
+            this.setState({profile: jsonData.rows});
+
+        } catch (err) {
+            console.error(err.message);
+        }
+    };
+
+    getPlayerDebut = async () => {
+        try {
+            const response = await fetch(`http://localhost:4000/players/debut/${this.state.id}`);
+            const jsonData = await response.json();
+
+            this.setState({debut: jsonData.rows});
 
         } catch (err) {
             console.error(err.message);
@@ -49,7 +78,10 @@ class Profile extends React.Component {
                         />
                     </Grid>
                     <Grid item xs={4}>
-                        <PlayerProfileCard playername={this.state.playerName} />
+                        <PlayerProfileCard playername={this.state.playerName}
+                                           profileData={this.state.profile}
+                                           debut={this.state.debut}
+                        />
                     </Grid>
                     <Grid item xs={4}>
                         <BiAxialLineChart rawdata={this.state.batting} />
