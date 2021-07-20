@@ -52,5 +52,23 @@ router.get("/CareerDismissals/:count", async function(req, res){
     }
 });
 
+router.get("/seasons/:id", async function(req, res){
+
+    try {
+        const { id } = req.params;
+
+        const q = `SELECT F.fieldingid AS id, COALESCE(F.Catches, 0) + COALESCE(F.Stumpings, 0) AS dismissals, * FROM players.fielding F
+        INNER JOIN Players.Details D ON D.PlayerId = F.PlayerId
+        WHERE year IS NOT NULL AND F.playerid = ${id}`;
+
+        const todos = await pool.query(q);
+        res.json(todos);
+        console.log("Retrieved from players.fielding")
+
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
 module.exports = router;
 

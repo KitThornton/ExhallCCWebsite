@@ -7,6 +7,7 @@ import PageHeader from "../components/PageHeader";
 import PlayerProfileCard from '../components/PlayerProfileCard';
 import battingColumns from "../components/columns/ProfileBatting"
 import bowlingColumns from "../components/columns/ProfileBowling"
+import fieldingColumns from "../components/columns/ProfileFielding"
 import PlayerPieChart from "../components/graphs/PlayerPieChart";
 import DisciplineButton from "../components/DisciplineButton";
 
@@ -64,7 +65,7 @@ class Profile extends React.Component {
                 this.setState( { columns:  bowlingColumns})
                 break;
            case "fielding":
-                this.setState( { columns:  battingColumns})
+                this.setState( { columns:  fieldingColumns})
                 break;
         }
 
@@ -100,9 +101,7 @@ class Profile extends React.Component {
                             <DisciplineButton data={this.state.data} onDataChange={this.handleDataChange} id={this.state.id}/>
                         </div>
                         <DataGrid
-                            // width={"50%"}
                             getRowId={(r) => r.id}
-                            // rows={Array.from(this.state.batting)}
                             rows={Array.from(this.state.data)}
                             columns={this.state.columns}
                             pageSize={40}  />
