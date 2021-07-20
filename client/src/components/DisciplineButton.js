@@ -1,6 +1,7 @@
 // Here will be a button group that'll span the container and dictate the stats displayed in the table
-import React, {useState} from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -12,20 +13,7 @@ class DisciplineButton extends React.Component {
         this.state = { id: props.id}
     }
 
-    useStyles = makeStyles((theme) => ({
-        root: {
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            '& > *': {
-                margin: theme.spacing(1),
-            },
-            width: '100%'
-        },
-    }));
-
     setData = async (e) => {
-        // console.log(e.target.value);
         let q;
 
         switch (e) {
@@ -40,15 +28,10 @@ class DisciplineButton extends React.Component {
                 break;
         }
 
-        console.log(q);
-
         try {
             const response = await fetch(q);
             const jsonData = await response.json();
-
-            // this.setState({data: jsonData.rows});
-            this.props.onDataChange(jsonData.rows);
-            console.log(jsonData.rows);
+            this.props.onDataChange(jsonData.rows, e);
 
         } catch (err) {
             console.error(err.message);
@@ -61,7 +44,11 @@ class DisciplineButton extends React.Component {
     }
 
     render() {
+
+        // const { classes } = this.props;
+
         return (
+            // <div className={classes.root}>
             <div>
                 <ButtonGroup variant="text" color="primary"
                              aria-label="text primary button group">
@@ -74,4 +61,17 @@ class DisciplineButton extends React.Component {
     }
 }
 
+const styles = theme => ({
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        '& > *': {
+            margin: theme.spacing(1),
+        },
+        width: '100%'
+    },
+})
+
+// export default withStyles(styles)(DisciplineButton);
 export default DisciplineButton;

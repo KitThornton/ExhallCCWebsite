@@ -6,6 +6,7 @@ import BiAxialLineChart from "../components/graphs/BiAxialLineChart";
 import PageHeader from "../components/PageHeader";
 import PlayerProfileCard from '../components/PlayerProfileCard';
 import battingColumns from "../components/columns/ProfileBatting"
+import bowlingColumns from "../components/columns/ProfileBowling"
 import PlayerPieChart from "../components/graphs/PlayerPieChart";
 import DisciplineButton from "../components/DisciplineButton";
 
@@ -26,8 +27,7 @@ class Profile extends React.Component {
     componentDidMount() {
         this.getBatting().then(r => r);
         this.getPlayerProfile().then(r => r);
-        // this.getPlayerDebut().then(r => r);
-        this.setState({columns: Columns});
+        this.setState({columns: battingColumns});
     }
 
     getBatting = async () => {
@@ -54,34 +54,22 @@ class Profile extends React.Component {
         }
     };
 
-    handleDataChange = data => {
-        this.setState( { columns:  })
+    handleDataChange = (data, disc) => {
+
+        switch (disc) {
+            case "batting":
+                this.setState( { columns:  battingColumns})
+                break;
+            case "bowling":
+                this.setState( { columns:  bowlingColumns})
+                break;
+           case "fielding":
+                this.setState( { columns:  battingColumns})
+                break;
+        }
+
         this.setState({ data })
     }
-
-    // getPlayerDebut = async () => {
-    //     try {
-    //         const response = await fetch(`http://localhost:4000/players/debut/${this.state.id}`);
-    //         const jsonData = await response.json();
-    //
-    //         this.setState({debut: jsonData.rows});
-    //
-    //     } catch (err) {
-    //         console.error(err.message);
-    //     }
-    // };
-
-    // getTableData = async () => {
-    //     try {
-    //         const response = await fetch(`http://localhost:4000/batting/seasons/${this.state.id}`);
-    //         const jsonData = await response.json();
-    //
-    //         this.setState({batting: jsonData.rows, playerName: jsonData.rows[0]["playername"]});
-    //
-    //     } catch (err) {
-    //         console.error(err.message);
-    //     }
-    // };
 
     render() {
 
@@ -102,16 +90,18 @@ class Profile extends React.Component {
                         />
                     </Grid>
                     <Grid item xs={4}>
-                        <BiAxialLineChart rawdata={this.state.batting} />
+                        <BiAxialLineChart rawdata={this.state.data} />
                     </Grid>
                     <Grid item xs={4}>
-                        <PlayerPieChart rawdata={this.state.batting} />
+                        <PlayerPieChart rawdata={this.state.data} />
                     </Grid>
                     <Grid item xs={12} style={{ height: 600, padding: "25px" }}>
-                        <DisciplineButton data={this.state.data} onDataChange={this.handleDataChange} id={this.state.id}/>
+                        <div className={classes.buttonGroup}>
+                            <DisciplineButton data={this.state.data} onDataChange={this.handleDataChange} id={this.state.id}/>
+                        </div>
                         <DataGrid
                             // width={"50%"}
-                            getRowId={(r) => r.battingid}
+                            getRowId={(r) => r.id}
                             // rows={Array.from(this.state.batting)}
                             rows={Array.from(this.state.data)}
                             columns={this.state.columns}
@@ -136,7 +126,16 @@ const styles = theme => ({
         minHeight: 500,
         width: '100%',
         padding: "10px"
-    }
+    },
+    buttonGroup: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        '& > *': {
+            margin: theme.spacing(1),
+        },
+        width: '100%'
+    },
 });
 
 export default withStyles(styles)(Profile);

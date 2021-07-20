@@ -99,7 +99,7 @@ router.get("/seasons/:id", async function(req, res){
         // If it can be parsed then go by id, otherwise name
         const { id } = req.params;
 
-        const q = `SELECT * FROM players.batting B
+        const q = `SELECT B.battingid AS id, * FROM players.batting B
         INNER JOIN Players.Details D ON D.PlayerId = B.PlayerId
         WHERE year IS NOT NULL AND B.playerid = ${id}`;
 
