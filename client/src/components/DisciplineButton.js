@@ -29,7 +29,7 @@ class DisciplineButton extends React.Component {
         try {
             const response = await fetch(q);
             const jsonData = await response.json();
-            this.props.onDataChange(jsonData.rows, e);
+            this.props.onTableDataChange(jsonData.rows, e);
 
         } catch (err) {
             console.error(err.message);

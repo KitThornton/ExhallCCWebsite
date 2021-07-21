@@ -83,6 +83,27 @@ router.get("/debut/:id", async function(req, res){
     }
 });
 
+/*
+    Return the key stats by playerid for the profile page
+*/
+router.get("/keystats/:id", async function(req, res){
+
+    try {
+        const { id } = req.params;
+        const q = `SELECT BA.runs AS battingruns, * FROM players.details D
+                        INNER JOIN players.batting BA ON D.playerid = BA.playerid
+                        INNER JOIN players.bowling BO ON D.playerid = BO.playerid
+                        INNER JOIN players.fielding F ON D.playerid = F.playerid
+                   WHERE  D.playerid = ${id}`;
+
+        const todos = await pool.query(q)
+        res.json(todos);
+
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
 
 
 

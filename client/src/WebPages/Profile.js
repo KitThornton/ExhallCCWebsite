@@ -10,6 +10,7 @@ import bowlingColumns from "../components/columns/ProfileBowling"
 import fieldingColumns from "../components/columns/ProfileFielding"
 import PlayerPieChart from "../components/graphs/PlayerPieChart";
 import DisciplineButton from "../components/DisciplineButton";
+import CombinedButtonGroup from "../components/CombinedButtonGroup";
 
 class Profile extends React.Component {
 
@@ -21,7 +22,9 @@ class Profile extends React.Component {
             columns: "",
             debut: "",
             profile: "",
-            data: ""
+            tableData: "",
+            graphData: "",
+            graphStat: "runs"
         }
     }
 
@@ -29,6 +32,7 @@ class Profile extends React.Component {
         this.getBatting().then(r => r);
         this.getPlayerProfile().then(r => r);
         this.getPlayerDebut().then(r => r);
+        this.getKeyPlayerStats().then(r => r);
         this.setState({columns: battingColumns});
     }
 
@@ -37,7 +41,7 @@ class Profile extends React.Component {
             const response = await fetch(`http://localhost:4000/batting/seasons/${this.state.id}`);
             const jsonData = await response.json();
 
-            this.setState({data: jsonData.rows, playerName: jsonData.rows[0]["playername"]});
+            this.setState({tableData: jsonData.rows, playerName: jsonData.rows[0]["playername"]});
 
         } catch (err) {
             console.error(err.message);
@@ -68,7 +72,19 @@ class Profile extends React.Component {
         }
     };
 
-    handleDataChange = (data, disc) => {
+    getKeyPlayerStats = async () => {
+        try {
+            const response = await fetch(`http://localhost:4000/players/keystats/${this.state.id}`);
+            const jsonData = await response.json();
+
+            this.setState({graphData: jsonData.rows});
+
+        } catch (err) {
+            console.error(err.message);
+        }
+    }
+
+    handleTableDataChange = (data, disc) => {
 
         switch (disc) {
             case "batting":
@@ -82,7 +98,12 @@ class Profile extends React.Component {
                 break;
         }
 
-        this.setState({ data })
+        this.setState({ tableData: data })
+    }
+
+    handleGraphDataChange = (stat) => {
+        // Update the graphStat
+        this.setState({ graphStat: stat })
     }
 
     render() {
@@ -104,18 +125,20 @@ class Profile extends React.Component {
                         />
                     </Grid>
                     <Grid item xs={8}>
-                        <BiAxialLineChart rawdata={this.state.data} />
+                        {/*Button group here*/}
+                        <CombinedButtonGroup onGraphDataChange={this.handleGraphDataChange} id={this.state.id} />
+                        <BiAxialLineChart data={this.state.graphData} stat={this.state.graphStat} />
                     </Grid>
                     <Grid item xs={4}>
-                        <PlayerPieChart rawdata={this.state.data} />
+                        <PlayerPieChart rawdata={this.state.tableData} />
                     </Grid>
                     <Grid item xs={12} style={{ height: 600, padding: "25px" }}>
                         <div className={classes.buttonGroup}>
-                            <DisciplineButton data={this.state.data} onDataChange={this.handleDataChange} id={this.state.id}/>
+                            <DisciplineButton tableData={this.state.tableData} onTableDataChange={this.handleTableDataChange} id={this.state.id}/>
                         </div>
                         <DataGrid
                             getRowId={(r) => r.id}
-                            rows={Array.from(this.state.data)}
+                            rows={Array.from(this.state.tableData)}
                             columns={this.state.columns}
                             pageSize={40}  />
                     </Grid>

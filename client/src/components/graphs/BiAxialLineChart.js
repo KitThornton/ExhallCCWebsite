@@ -8,12 +8,12 @@ export default class BiAxialLineChart extends React.Component {
             <LineChart
                 width={700}
                 height={500}
-                data={this.props.rawdata}
+                data={this.props.data}
                 margin={{
-                    top: 100,
+                    top: 30,
                     right: 30,
-                    left: 20,
-                    bottom: 5,
+                    left: 10,
+                    bottom: 10,
                 }}
             >
                 <CartesianGrid strokeDasharray="3 3" />
@@ -30,7 +30,7 @@ export default class BiAxialLineChart extends React.Component {
 
                 <Tooltip />
                 <Legend />
-                <Line  yAxisId="left" type="monotone" dataKey="runs" stroke="#8884d8" activeDot={{ r: 8 }} />
+                <Line  yAxisId="left" type="monotone" dataKey={this.props.stat} stroke="#8884d8" activeDot={{ r: 8 }} />
                 {/*<Line  yAxisId="right" type="monotone" dataKey="average" stroke="#82ca9d" />*/}
             </LineChart>
         );
