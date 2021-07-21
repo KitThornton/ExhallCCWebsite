@@ -28,6 +28,7 @@ class Profile extends React.Component {
     componentDidMount() {
         this.getBatting().then(r => r);
         this.getPlayerProfile().then(r => r);
+        this.getPlayerDebut().then(r => r);
         this.setState({columns: battingColumns});
     }
 
@@ -37,6 +38,18 @@ class Profile extends React.Component {
             const jsonData = await response.json();
 
             this.setState({data: jsonData.rows, playerName: jsonData.rows[0]["playername"]});
+
+        } catch (err) {
+            console.error(err.message);
+        }
+    };
+
+    getPlayerDebut = async () => {
+        try {
+            const response = await fetch(`http://localhost:4000/players/debut/${this.state.id}`);
+            const jsonData = await response.json();
+
+            this.setState({debut: jsonData.rows});
 
         } catch (err) {
             console.error(err.message);
@@ -90,7 +103,7 @@ class Profile extends React.Component {
                                            debut={this.state.debut}
                         />
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={8}>
                         <BiAxialLineChart rawdata={this.state.data} />
                     </Grid>
                     <Grid item xs={4}>

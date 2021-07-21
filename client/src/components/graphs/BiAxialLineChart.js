@@ -6,8 +6,8 @@ export default class BiAxialLineChart extends React.Component {
     render() {
         return (
             <LineChart
-                width={500}
-                height={300}
+                width={700}
+                height={500}
                 data={this.props.rawdata}
                 margin={{
                     top: 100,
