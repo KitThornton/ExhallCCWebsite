@@ -10,8 +10,8 @@ export default class BiAxialLineChart extends React.Component {
                 height={500}
                 data={this.props.data}
                 margin={{
-                    top: 30,
-                    right: 30,
+                    top: 10,
+                    right: 10,
                     left: 10,
                     bottom: 10,
                 }}
@@ -29,7 +29,7 @@ export default class BiAxialLineChart extends React.Component {
                 {/*/>*/}
 
                 <Tooltip />
-                <Legend />
+                <Legend offset={-5}  />
                 <Line  yAxisId="left" type="monotone" dataKey={this.props.stat} stroke="#8884d8" activeDot={{ r: 8 }} />
                 {/*<Line  yAxisId="right" type="monotone" dataKey="average" stroke="#82ca9d" />*/}
             </LineChart>

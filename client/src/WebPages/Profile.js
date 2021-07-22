@@ -103,7 +103,8 @@ class Profile extends React.Component {
 
     handleGraphDataChange = (stat) => {
         // Update the graphStat
-        this.setState({ graphStat: stat })
+        this.setState({ graphStat: stat });
+        this.getKeyPlayerStats().then(r => r);
     }
 
     render() {
@@ -125,7 +126,6 @@ class Profile extends React.Component {
                         />
                     </Grid>
                     <Grid item xs={8}>
-                        {/*Button group here*/}
                         <CombinedButtonGroup onGraphDataChange={this.handleGraphDataChange} id={this.state.id} />
                         <BiAxialLineChart data={this.state.graphData} stat={this.state.graphStat} />
                     </Grid>
@@ -169,7 +169,7 @@ const styles = theme => ({
         '& > *': {
             margin: theme.spacing(1),
         },
-        width: '100%'
+        minWidth: '100%'
     },
 });
 

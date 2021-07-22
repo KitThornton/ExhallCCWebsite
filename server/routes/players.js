@@ -90,11 +90,15 @@ router.get("/keystats/:id", async function(req, res){
 
     try {
         const { id } = req.params;
-        const q = `SELECT BA.runs AS battingruns, * FROM players.details D
-                        INNER JOIN players.batting BA ON D.playerid = BA.playerid
-                        INNER JOIN players.bowling BO ON D.playerid = BO.playerid
-                        INNER JOIN players.fielding F ON D.playerid = F.playerid
-                   WHERE  D.playerid = ${id}`;
+        const q = `SELECT BA.year, BA.runs, BO.wickets, BA.highscore, BA.average AS bataverage, BO.average AS bowlaverage,
+                        D.playername,
+                       SUM(BA.Matches) AS appearances
+                    FROM players.batting BA
+                        INNER JOIN players.bowling BO ON BA.playerid = BO.playerid AND BA.year = BO.year
+                        INNER JOIN players.fielding F ON BA.playerid = F.playerid AND BA.year = F.year
+                        INNER JOIN  players.details D ON BA.playerid = D.playerid
+                   WHERE  BA.playerid = ${id}
+                   GROUP BY BA.year, BA.runs, BO.wickets, BA.highscore, BA.average, BO.average, D.playername`;
 
         const todos = await pool.query(q)
         res.json(todos);

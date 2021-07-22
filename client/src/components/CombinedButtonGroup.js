@@ -37,11 +37,11 @@ class CombinedButtonGroup extends React.Component {
                 <ButtonGroup variant="text" color="primary"
                              aria-label="text primary button group">
                     <Button onClick={() => this.handleInput("appearances")}>Appearances</Button>
-                    <Button onClick={() => this.handleInput("battingruns")} >Runs</Button>
+                    <Button onClick={() => this.handleInput("runs")} >Runs</Button>
                     <Button onClick={() => this.handleInput("wickets")} >Wickets</Button>
                     <Button onClick={() => this.handleInput("highScore")} >HighScore</Button>
-                    <Button onClick={() => this.handleInput("batAverage")} >Average (bat)</Button>
-                    <Button onClick={() => this.handleInput("bowlAverage")} >Average (bowl)</Button>
+                    <Button onClick={() => this.handleInput("bataverage")} >Average (bat)</Button>
+                    <Button onClick={() => this.handleInput("bowlaverage")} >Average (bowl)</Button>
                 </ButtonGroup>
             </div>
         )

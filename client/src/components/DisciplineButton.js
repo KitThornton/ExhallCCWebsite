@@ -42,14 +42,14 @@ class DisciplineButton extends React.Component {
 
     render() {
         return (
-            <div>
+            // <div>
                 <ButtonGroup variant="contained" color="primary"
                              aria-label="contained primary button group">
                     <Button onClick={() => this.handleInput("batting")}>Batting</Button>
                     <Button onClick={() => this.handleInput("bowling")} >Bowling</Button>
                     <Button onClick={() => this.handleInput("fielding")} >Fielding</Button>
                 </ButtonGroup>
-            </div>
+            // {/*</div>*/}
         )
     }
 }
