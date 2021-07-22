@@ -1,13 +1,69 @@
-/* eslint-disable no-use-before-define */
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { makeStyles } from '@material-ui/core/styles';
+import {withStyles} from "@material-ui/core";
 
-// ISO 3166-1 alpha-2
-// ⚠️ No support for IE 11
+class PlayerSelect extends React.Component {
 
-const useStyles = makeStyles({
+    constructor() {
+        super();
+        this.state = {players: []};
+    }
+
+    componentDidMount() {
+        this.GetPlayers().then(r => r);
+    }
+
+    GetPlayers = async () => {
+
+        try {
+            const response = await fetch(`http://localhost:4000/players/details`);
+            const jsonData = await response.json();
+
+            this.setState({players: jsonData.rows});
+
+        } catch (err) {
+            console.error(err.message);
+        }
+    }
+
+    render() {
+
+        const { classes } = this.props;
+        // const players = GetPlayers();
+
+        return (
+            <Autocomplete
+                id="country-select-demo"
+                style={{ width: 300 }}
+                options={this.state.players}
+                classes={{
+                    option: classes.option,
+                }}
+                autoHighlight
+                getOptionLabel={(option) => option.playername}
+                renderOption={(option) => (
+                    <React.Fragment>
+                        {option.playername}
+                    </React.Fragment>
+                )}
+                renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        label="Search for a player"
+                        variant="outlined"
+                        inputProps={{
+                            ...params.inputProps,
+                            autoComplete: 'new-password', // disable autocomplete and autofill
+                        }}
+                    />
+                )}
+            />
+        )
+    }
+}
+
+const styles = theme => ({
     option: {
         fontSize: 15,
         '& > span': {
@@ -17,59 +73,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function CountrySelect() {
-    const classes = useStyles();
-
-    const players = GetPlayers();
-
-    console.log(players.stringify);
-
-    return (
-        <Autocomplete
-            id="country-select-demo"
-            style={{ width: 300 }}
-            options={players}
-            classes={{
-                option: classes.option,
-            }}
-            autoHighlight
-            getOptionLabel={(option) => option.playername}
-            renderOption={(option) => (
-                <React.Fragment>
-                    {option.playername}
-                </React.Fragment>
-            )}
-            renderInput={(params) => (
-                <TextField
-                    {...params}
-                    label="Search for a player"
-                    variant="outlined"
-                    inputProps={{
-                        ...params.inputProps,
-                        autoComplete: 'new-password', // disable autocomplete and autofill
-                    }}
-                />
-            )}
-        />
-    );
-}
-
-async function GetPlayers() {
-    let players;
-
-    try {
-        const response = await fetch(`http://localhost:4000/players/details`);
-        players = await response.json();
-
-        return players;
-
-    } catch (err) {
-        console.error(err.message);
-        return players;
-    }
-}
-
-// const players = GetPlayers();
+export default withStyles(styles)(PlayerSelect);
 
 const players2 = [
     {

@@ -94,20 +94,19 @@ class Players extends React.Component {
                             pageSize={40}  />
                     </Grid>
                     <Grid item xs={6} className={classes.table}>
+                        {/*<h2>Career Hall of Fame</h2>*/}
+                        <div className={classes.div}>
+                            <BattingButtonGroup />
+                        </div>
+                        {/*</Grid>*/}
+                        {/*<Grid item xs={5}>*/}
+                        {/*    <h4 style={{ align: "centre" }}>Career Batting</h4>*/}
+                        <BiAxialBarChart rawdata={this.state.data} yaxis={"runs"} />
 
                     </Grid>
 
                     {/*    New row    */}
-                    <Grid item xs={4}>
-                        <div className={classes.div} >
-                            <BattingButtonGroup />
-                        </div>
-                    {/*</Grid>*/}
-                    {/*<Grid item xs={5}>*/}
-                    {/*    <h4 style={{ align: "centre" }}>Career Batting</h4>*/}
-                        <BiAxialBarChart rawdata={this.state.data} yaxis={"runs"} />
-                    </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={6}>
                         <div className={classes.div} >
                             <BowlingButtonGroup />
                         </div>
@@ -118,7 +117,7 @@ class Players extends React.Component {
                         <BiAxialBarChart rawdata={this.state.bowling} yaxis="wickets" />
                     </Grid>
 
-                    <Grid item xs={4}>
+                    <Grid item xs={6}>
                         <div className={classes.div} >
                             <BowlingButtonGroup />
                         </div>
@@ -141,7 +140,9 @@ const styles = theme => ({
         height: 900
     },
     table: {
-        height: 300,
+        height: 400,
+        // padding: 12,
+        paddingBottom: 20
     },
     grid: {
         minHeight: 500,

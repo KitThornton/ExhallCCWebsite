@@ -6,15 +6,6 @@ import {
 import blue from '@material-ui/core/colors/blue';
 import avatar from "../images/avatar.png";
 
-// const useStyles = makeStyles({
-//     media: {
-//         height: 300,
-//     },
-//     avatar: {
-//         backgroundColor: blue[500],
-//     },
-// });
-
 class PlayerProfileCard extends React.Component {
 
     constructor(props) {
