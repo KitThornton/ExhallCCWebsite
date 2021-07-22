@@ -2,6 +2,14 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import {withStyles} from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+
+function CreateURL(id) {
+    let str1 = "/profile/";
+    let str2 = str1.concat(id);
+
+    return str2;
+}
 
 class PlayerSelect extends React.Component {
 
@@ -27,7 +35,25 @@ class PlayerSelect extends React.Component {
         }
     }
 
+    // CreateURL(id) {
+    //     let str1 = "/profile/";
+    //     let str2 = str1.concat(id);
+    //
+    //     return str2;
+    // }
+
     render() {
+
+        // const button =
+        //     (
+        //         <Button
+        //             onClick={(e) => {
+        //                 console.log("CLICK SUCCESSFUL");
+        //             }}
+        //         >
+        //             {option.playername}
+        //         </Button>
+        //     )
 
         const { classes } = this.props;
         // const players = GetPlayers();
@@ -35,22 +61,31 @@ class PlayerSelect extends React.Component {
         return (
             <Autocomplete
                 id="country-select-demo"
-                style={{ width: 300 }}
+                style={{ width: 300,
+                    backgroundColor: "#f2f2f2",
+                    outlineColor: "#f2f2f2",
+                    borderColor: 'transparent'
+                }}
                 options={this.state.players}
                 classes={{
                     option: classes.option,
                 }}
                 autoHighlight
+                size={"small"}
                 getOptionLabel={(option) => option.playername}
                 renderOption={(option) => (
                     <React.Fragment>
-                        {option.playername}
+                        <Button
+                            href= {CreateURL(option.playerid)}
+                        >
+                            {option.playername}
+                        </Button>
                     </React.Fragment>
                 )}
                 renderInput={(params) => (
                     <TextField
                         {...params}
-                        label="Search for a player"
+                        // label="Search for a player"
                         variant="outlined"
                         inputProps={{
                             ...params.inputProps,
@@ -64,6 +99,9 @@ class PlayerSelect extends React.Component {
 }
 
 const styles = theme => ({
+    bar: {
+        width: 100
+    },
     option: {
         fontSize: 15,
         '& > span': {

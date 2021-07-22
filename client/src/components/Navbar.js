@@ -2,6 +2,7 @@
 import * as React from "react";
 import {Navbar, NavDropdown, Nav, Form, Button, FormControl } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap"
+import PlayerSearchBar from "./PlayerSearchBar";
 // import {Link} from "react-router-dom";
 
 class NavBar extends React.Component{
@@ -51,8 +52,12 @@ class NavBar extends React.Component{
                             {/*</LinkContainer>*/}
                         </Nav>
                         <Form inline>
-                            <FormControl type="text" placeholder="Search for a player..." className="mr-sm-2" />
-                            <Button variant="outline-light">Search</Button>
+                            {/*<FormControl type="text" placeholder="Search for a player..." className="mr-sm-2" />*/}
+                            <PlayerSearchBar />
+                            {/*<Button*/}
+                            {/*    // style={{paddingRight: 5, paddingLeft: 5}}*/}
+                            {/*        variant="outline-light">Search*/}
+                            {/*</Button>*/}
                         </Form>
                         {/*<Nav>*/}
                         {/*    <Nav.Link href="../about">About the Developer</Nav.Link>*/}
