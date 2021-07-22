@@ -22,15 +22,15 @@ class NavBar extends React.Component{
                             <LinkContainer to="/Players">
                                 <Nav.Link>Players</Nav.Link>
                             </LinkContainer>
-                            <NavDropdown title="Trophy Cabinet" id="collasible-nav-dropdown">
+                            <NavDropdown title="Trophy Cabinet" id="collapsible-nav-dropdown">
                                 {/*<LinkContainer to="/AboutTheClub">*/}
-                                    <NavDropdown.Item href="/Players">Players</NavDropdown.Item>
+                                    <NavDropdown.Item href="/Trophies/Players">Players</NavDropdown.Item>
                                 {/*</LinkContainer>*/}
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="/Players">Club</NavDropdown.Item>
                             </NavDropdown>
                             {/*<Nav.Link href="#aboutTheClub">About the Club</Nav.Link>*/}
-                            <NavDropdown title="Batting" id="collasible-nav-dropdown">
+                            <NavDropdown title="Batting" id="collapsible-nav-dropdown">
                                 {/*<LinkContainer to="/Profile">*/}
                                 {/*    <NavDropdown.Item>Link</NavDropdown.Item>*/}
                                 {/*</LinkContainer>*/}

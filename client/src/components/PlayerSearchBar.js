@@ -56,14 +56,18 @@ class PlayerSelect extends React.Component {
                 getOptionLabel={(option) => option.playername}
                 renderOption={(option) => (
                     <React.Fragment>
-                        <span>
+                        {/*<span>*/}
                             <Button
                                 href= {CreateURL(option.playerid)}
-                                // style={{width: 250}}
+                                style={{
+                                    minWidth: '100%',
+                                    textAlign: 'left',
+                                    alignSelf: 'stretch'
+                                }}
                             >
                                 {option.playername}
                             </Button>
-                        </span>
+                        {/*</span>*/}
                     </React.Fragment>
                 )}
                 renderInput={(params) => (

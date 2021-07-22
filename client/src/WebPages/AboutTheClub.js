@@ -6,7 +6,7 @@ function AboutTheClub() {
     return (
         <Container>
             <PageHeader header="About The Club" description="Some more info about the club in general and stuff." />
-            <PlayerSearchBar/>
+            {/*<PlayerSearchBar/>*/}
             <br/>
         </Container>
     );

@@ -10,6 +10,7 @@ import Batting from "./WebPages/Batting";
 import Bowling from "./WebPages/Bowling";
 import Awards from "./WebPages/Awards";
 import Footer from "./components/Footer"
+import PlayerTrophies from "./WebPages/PlayerTrophies"
 
 const App = () => (
       <div style={{ padding: 0 }} >
@@ -26,6 +27,7 @@ const App = () => (
                       <Route exact path="/Batting/:team" component={Batting} />
                       <Route exact path="/Bowling/:team" component={Bowling} />
                       <Route exact path="/Awards" component={Awards} />
+                      <Route exact path="/Trophies/Players" component={PlayerTrophies} />
                   </Switch>
                 <Footer/>
               {/*</Container>*/}
