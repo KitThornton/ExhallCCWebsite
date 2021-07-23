@@ -5,7 +5,7 @@ export default class BattingButtonGroup extends React.Component {
 
     constructor() {
         super();
-        this.state = {view: "runs", rawdata: [], data: []};
+        this.state = {view: "runs"};
         this.handleOnChange = this.handleOnChange.bind(this);
     }
 
@@ -14,27 +14,9 @@ export default class BattingButtonGroup extends React.Component {
             this.setState({ view: value });
         }
 
-        // Here, let's change the data for the
-        switch (value) {
-            case "highscore":
-                this.getCareerHighScores().then(r => r);
-                break;
-            default:
-                break;
-        }
+        this.props.onCareerGraphDataChange(value);
+
     }
-
-    getCareerHighScores = async () => {
-        try {
-            const response = await fetch("http://localhost:4000/batting/CareerHighScores/10");
-            const jsonData = await response.json();
-
-            this.setState({data: jsonData.rows});
-
-        } catch (err) {
-            console.error(err.message);
-        }
-    };
 
     render() {
         return (

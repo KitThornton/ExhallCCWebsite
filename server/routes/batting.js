@@ -32,7 +32,56 @@ router.get("/CareerHighScores/:count", async function(req, res){
 
     try {
         const { count } = req.params;
-        const q = `SELECT * FROM players.batting WHERE year IS NULL ORDER BY Highscore DESC LIMIT ${count}`;
+        const q = `SELECT D.playerid, D.playername, B.Highscore FROM players.batting B
+                        INNER JOIN players.details D ON D.playerid = B.playerid
+                   WHERE year IS NULL
+                   ORDER BY Highscore DESC
+                   LIMIT ${count}`;
+        const todos = await pool.query(q);
+        res.json(todos);
+        console.log("Retrieved from players.batting")
+
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+/*
+    Top career average
+    Again we will replace this with a procedure, need to return the player name as well I assume
+ */
+router.get("/CareerAverage/:count", async function(req, res){
+
+    try {
+        const { count } = req.params;
+        const q = `SELECT D.playerid, D.playername, B.average FROM players.batting B
+                    INNER JOIN players.details D ON D.playerid = B.playerid 
+                    WHERE year IS NULL AND average IS NOT NULL AND innings > 10
+                    ORDER BY average DESC 
+                    LIMIT ${count}`;
+        const todos = await pool.query(q);
+        res.json(todos);
+        console.log("Retrieved from players.batting")
+
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+/*
+    Top career century count
+    Again we will replace this with a procedure, need to return the player name as well I assume
+ */
+router.get("/CareerCenturies/:count", async function(req, res){
+
+    try {
+        const { count } = req.params;
+        const q =   `SELECT D.playerid, D.playername, B.hundreds AS centuries FROM players.batting B
+                        INNER JOIN players.details D ON D.playerid = B.playerid
+                    WHERE year IS NULL
+                    ORDER BY B.hundreds DESC
+                    LIMIT ${count}`;
+
         const todos = await pool.query(q);
         res.json(todos);
         console.log("Retrieved from players.batting")

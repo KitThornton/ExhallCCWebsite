@@ -14,11 +14,11 @@ export default class BiAxialBarChart extends React.Component {
             <BarChart
                 width={450}
                 height={300}
-                data={this.props.rawdata}
+                data={this.props.data}
                 margin={{
                     top: 5,
-                    right: 30,
-                    left: 20,
+                    right: 10,
+                    left: 10,
                     bottom: 65,
                 }}
             >
@@ -32,7 +32,7 @@ export default class BiAxialBarChart extends React.Component {
                 <YAxis />
                 <Tooltip />
                 {/*<Legend />*/}
-                <Bar dataKey={this.props.yaxis} fill="#8884d8" />
+                <Bar dataKey={this.props.stat} fill="#8884d8" />
                 {/*<Bar dataKey="uv" fill="#82ca9d" />*/}
             </BarChart>
         );

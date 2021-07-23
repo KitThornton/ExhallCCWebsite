@@ -25,7 +25,8 @@ class CombinedButtonGroup extends React.Component {
     }
 
     handleInput(e) {
-        this.setData(e).then(r => r);
+        // this.setData(e).then(r => r);
+        this.props.onGraphDataChange(e);
     }
 
     render() {

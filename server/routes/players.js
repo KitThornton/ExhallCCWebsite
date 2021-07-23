@@ -84,6 +84,28 @@ router.get("/debut/:id", async function(req, res){
 });
 
 /*
+    Return the top X capped players
+*/
+router.get("/CareerCaps/:count", async function(req, res){
+
+    try {
+        const { count } = req.params;
+        const q =   `SELECT  D.playerid, D.playername, B.matches AS caps
+                    FROM players.details D
+                        INNER JOIN players.batting B ON D.playerid = B.playerid
+                    WHERE  B.year IS NULL
+                    ORDER BY B.Matches DESC
+                    LIMIT ${count}`;
+
+        const todos = await pool.query(q)
+        res.json(todos);
+
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+/*
     Return the key stats by playerid for the profile page
 */
 router.get("/keystats/:id", async function(req, res){
