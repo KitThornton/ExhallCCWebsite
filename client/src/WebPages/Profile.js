@@ -82,7 +82,7 @@ class Profile extends React.Component {
         } catch (err) {
             console.error(err.message);
         }
-    }
+    };
 
     handleTableDataChange = (data, disc) => {
 
@@ -99,10 +99,9 @@ class Profile extends React.Component {
         }
 
         this.setState({ tableData: data })
-    }
+    };
 
     handleGraphDataChange = (stat) => {
-        // Update the graphStat
         this.setState({ graphStat: stat });
         this.getKeyPlayerStats().then(r => r);
     }

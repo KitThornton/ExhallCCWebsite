@@ -28,7 +28,7 @@ class PlayerProfileCard extends React.Component {
                                 {GetInitials(playerName)}
                             </Avatar>}
                         title={playerName}
-                        subheader="Debut: September 14, 2016"
+                        subheader={CreateSubheader(debut["debut"], debut["latestyear"])}
                     >
                     </CardHeader>
                     <CardActionArea>
@@ -82,6 +82,11 @@ function GetInitials(playerName) {
     if (!playerName) return "";
     return playerName.match(/\b(\w)/g).join('');
 }
+
+function CreateSubheader(debut, latest) {
+    return "Years active: " + debut + " - " + latest;
+}
+
 
 export default withStyles(styles)(PlayerProfileCard);
 // export default PlayerProfileCard;

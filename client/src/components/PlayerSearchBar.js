@@ -65,7 +65,7 @@ class PlayerSelect extends React.Component {
                                     alignSelf: 'stretch'
                                 }}
                             >
-                                {option.playername}
+                                {option.playername.toProperCase()}
                             </Button>
                         {/*</span>*/}
                     </React.Fragment>
@@ -78,16 +78,20 @@ class PlayerSelect extends React.Component {
                         // InputLabelProps={{
                         //     style: { color: '#fff' },
                         // }}
-                        inputProps={{
-                            ...params.inputProps,
-                            autoComplete: 'new-password', // disable autocomplete and autofill
-                        }}
+                        // inputProps={{
+                        //     ...params.inputProps,
+                        //     autoComplete: 'new-password', // disable autocomplete and autofill
+                        // }}
                     />
                 )}
             />
         )
     }
 }
+
+String.prototype.toProperCase = function () {
+    return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+};
 
 const styles = theme => ({
     bar: {

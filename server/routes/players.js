@@ -69,7 +69,7 @@ router.get("/debut/:id", async function(req, res){
 
     try {
         const { id } = req.params;
-        const q = `SELECT  D.playerid, MIN(B.year) AS Debut, COUNT(DISTINCT(B.year)) AS Seasons
+        const q = `SELECT  D.playerid, MIN(B.year) AS Debut, COUNT(DISTINCT(B.year)) AS Seasons, MAX(B.year) AS latestyear
                    FROM players.details D
                         INNER JOIN players.batting B ON D.playerid = B.playerid
                    WHERE  D.playerid = ${id}
