@@ -9,8 +9,6 @@ export default class BowlingButtonGroup extends React.Component {
         this.handleOnChange = this.handleOnChange.bind(this);
     }
 
-    //1663.23
-
     handleOnChange(e, value) {
         if (value !== null) {
             this.setState({ view: value });
@@ -30,11 +28,11 @@ export default class BowlingButtonGroup extends React.Component {
                 <ToggleButton value="overs">
                     Overs
                 </ToggleButton>
-                <ToggleButton value="wickets" aria-label="runs">
+                <ToggleButton value="wickets">
                     Wickets
                 </ToggleButton>
-                <ToggleButton value="5whs">
-                    5 Wickets
+                <ToggleButton value="fivewickethauls">
+                    5 Wickets Hauls
                 </ToggleButton>
                 <ToggleButton value="bestfigures">
                     Best Figures

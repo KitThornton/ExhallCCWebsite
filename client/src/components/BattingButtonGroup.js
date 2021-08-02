@@ -15,7 +15,6 @@ export default class BattingButtonGroup extends React.Component {
         }
 
         this.props.onCareerGraphDataChange(value);
-
     }
 
     render() {

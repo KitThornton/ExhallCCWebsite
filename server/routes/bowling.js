@@ -25,6 +25,48 @@ router.get("/CareerWickets/:count", async function(req, res){
 });
 
 /*
+    Top career five wicket hauls
+    Firstly we'll do this as a query and then we'll use a procedure
+ */
+router.get("/CareerFiveWicketHauls/:count", async function(req, res){
+
+    try {
+        const { count } = req.params;
+        const q = `SELECT D.playerid, D.Playername, B.fivewickethauls FROM players.bowling B
+                   INNER JOIN Players.Details D ON D.PlayerId = B.PlayerId
+                    WHERE year IS NULL ORDER BY fivewickethauls DESC LIMIT ${count}`;
+
+        const todos = await pool.query(q);
+        res.json(todos);
+        console.log("Retrieved from players.bowling")
+
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+/*
+    Top career overs
+    Firstly we'll do this as a query and then we'll use a procedure
+ */
+router.get("/CareerOvers/:count", async function(req, res){
+
+    try {
+        const { count } = req.params;
+        const q = `SELECT D.playerid, D.Playername, B.overs FROM players.bowling B
+                   INNER JOIN Players.Details D ON D.PlayerId = B.PlayerId
+                    WHERE year IS NULL ORDER BY overs DESC LIMIT ${count}`;
+
+        const todos = await pool.query(q);
+        res.json(todos);
+        console.log("Retrieved from players.bowling")
+
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+/*
     Career best figures
     Again we will replace this with a procedure, need to return the player name as well I assume
  */
@@ -32,7 +74,8 @@ router.get("/CareerBestFigures/:count", async function(req, res){
 
     try {
         const { count } = req.params;
-        const q = `SELECT * FROM players.bowling
+        const q = `SELECT playername, bestfigswickets, bestfigsruns, CONCAT(Bestfigswickets, '-', bestfigsruns) AS bestfigures FROM players.bowling B
+                     INNER JOIN Players.Details D ON D.PlayerId = B.PlayerId
                    WHERE year IS NULL AND bestfigswickets IS NOT NULL AND bestfigsRuns IS NOT NULL
                    ORDER BY bestfigswickets DESC, bestfigsruns ASC LIMIT ${count}`;
         const todos = await pool.query(q);

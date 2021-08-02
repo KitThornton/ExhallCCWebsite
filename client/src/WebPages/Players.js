@@ -27,7 +27,7 @@ class Players extends React.Component {
     componentDidMount() {
         this.getPlayers().then(r => r);
         this.getCareerBowlingGraphStat("wickets").then(r => r);
-        this.getCareerGraphStat("runs").then(r => r);
+        this.getCareerBattingGraphStat("runs").then(r => r);
         this.setState({columns: Columns})
     }
 
@@ -43,7 +43,11 @@ class Players extends React.Component {
         }
     };
 
-    getCareerGraphStat = async (stat) => {
+    handleCareerBattingGraphDataChange = (stat) => {
+        this.getCareerBattingGraphStat(stat).then(r => r);
+    }
+
+    getCareerBattingGraphStat = async stat => {
         try {
             let q;
             const count = 10;
@@ -70,22 +74,15 @@ class Players extends React.Component {
             const response = await fetch(q);
             const jsonData = await response.json();
 
-            // this.setState({ careerGraphStat: stat });
-            this.setState({careerGraphData: jsonData.rows});
+            this.setState({ careerGraphStat: stat });
+            this.setState({ careerGraphData: jsonData.rows });
 
         } catch (err) {
             console.error(err.message);
         }
     };
 
-    handleCareerGraphDataChange = (stat) => {
-        // Update the data sent to the Recharts and the key stat
-        this.setState({ careerGraphStat: stat });
-        this.getCareerGraphStat(stat).then(r => r);
-    }
-
-    handleBowlingCareerGraphDataChange = (stat) => {
-        // Update the data sent to the Recharts and the key stat
+    handleCareerBowlingGraphDataChange = (stat) => {
         this.getCareerBowlingGraphStat(stat).then(r => r);
     }
 
@@ -96,20 +93,23 @@ class Players extends React.Component {
 
             // TODO: change this switch to a dictionary const or similar? Must be a neater way
             switch (stat) {
+                case "overs":
+                    q = `http://localhost:4000/bowling/CareerOvers/${count}`;
+                    break;
                 case "wickets":
                     q = `http://localhost:4000/bowling/CareerWickets/${count}`;
                     break;
                 case "bestfigures":
-                    q = `http://localhost:4000/batting/CareerBestFigures/${count}`;
+                    q = `http://localhost:4000/bowling/CareerBestFigures/${count}`;
                     break;
-                case "highscore":
-                    q = `http://localhost:4000/batting/CareerHighScores/${count}`;
+                case "fivewickethauls":
+                    q = `http://localhost:4000/bowling/CareerFiveWicketHauls/${count}`;
                     break;
                 case "average":
-                    q = `http://localhost:4000/batting/CareerAverage/${count}`;
+                    q = `http://localhost:4000/bowling/CareerAverage/${count}`;
                     break;
                 case "centuries":
-                    q = `http://localhost:4000/batting/CareerCenturies/${count}`;
+                    q = `http://localhost:4000/bowling/CareerCenturies/${count}`;
                     break;
             }
 
@@ -117,7 +117,7 @@ class Players extends React.Component {
             const jsonData = await response.json();
 
             this.setState({ careerBowlingGraphStat: stat });
-            this.setState({careerBowlingGraphData: jsonData.rows});
+            this.setState({ careerBowlingGraphData: jsonData.rows });
 
         } catch (err) {
             console.error(err.message);
@@ -148,25 +148,19 @@ class Players extends React.Component {
                             pageSize={40}  />
                     </Grid>
                     <Grid item xs={6} className={classes.table}>
-                        {/*<h2>Career Hall of Fame</h2>*/}
                         <div className={classes.div}>
-                            <BattingButtonGroup onCareerGraphDataChange={this.handleCareerGraphDataChange} />
+                            <BattingButtonGroup onCareerGraphDataChange={this.handleCareerBattingGraphDataChange} />
                         </div>
-                        {/*</Grid>*/}
-                        {/*<Grid item xs={5}>*/}
-                        {/*    <h4 style={{ align: "centre" }}>Career Batting</h4>*/}
+
                         <BiAxialBarChart stat={this.state.careerGraphStat} data={this.state.careerGraphData} />
                     </Grid>
 
                     {/*    New row    */}
                     <Grid item xs={6}>
                         <div className={classes.div} >
-                            <BowlingButtonGroup onCareerGraphDataChange={this.handleBowlingCareerGraphDataChange} />
+                            <BowlingButtonGroup onCareerGraphDataChange={this.handleCareerBowlingGraphDataChange} />
                         </div>
 
-                    {/*</Grid>*/}
-                    {/*<Grid item xs={5}>*/}
-                    {/*    <h4 style={{ align: "centre" }}>Career Bowling</h4>*/}
                         <BiAxialBarChart stat={this.state.careerBowlingGraphStat} data={this.state.careerBowlingGraphData} />
                     </Grid>
 
