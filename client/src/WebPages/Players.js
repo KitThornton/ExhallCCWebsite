@@ -57,23 +57,24 @@ class Players extends React.Component {
     getCareerGraphStat = async (stat) => {
         try {
             let q;
+            const count = 10;
 
             // TODO: change this switch to a dictionary const or similar? Must be a neater way
             switch (stat) {
                 case "caps":
-                    q = "http://localhost:4000/players/CareerCaps/10";
+                    q = `http://localhost:4000/players/CareerCaps/${count}`;
                     break;
                 case "runs":
-                    q = "http://localhost:4000/batting/CareerRuns/10";
+                    q = `http://localhost:4000/batting/CareerRuns/${count}`;
                     break;
                 case "highscore":
-                    q = "http://localhost:4000/batting/CareerHighScores/10";
+                    q = `http://localhost:4000/batting/CareerHighScores/${count}`;
                     break;
                 case "average":
-                    q = "http://localhost:4000/batting/CareerAverage/10";
+                    q = `http://localhost:4000/batting/CareerAverage/${count}`;
                     break;
                 case "centuries":
-                    q = "http://localhost:4000/batting/CareerCenturies/10";
+                    q = `http://localhost:4000/batting/CareerCenturies/${count}`;
                     break;
             }
 
