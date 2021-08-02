@@ -5,14 +5,18 @@ export default class BowlingButtonGroup extends React.Component {
 
     constructor() {
         super();
-        this.state = {view: "runs", rawdata: [], data: []};
+        this.state = {view: "wickets"};
         this.handleOnChange = this.handleOnChange.bind(this);
     }
+
+    //1663.23
 
     handleOnChange(e, value) {
         if (value !== null) {
             this.setState({ view: value });
         }
+
+        this.props.onCareerGraphDataChange(value);
     }
 
     render() {
@@ -23,19 +27,19 @@ export default class BowlingButtonGroup extends React.Component {
                                size = "small"
                                onChange={this.handleOnChange}
             >
-                <ToggleButton value="caps">
+                <ToggleButton value="overs">
                     Overs
                 </ToggleButton>
-                <ToggleButton value="runs" aria-label="runs">
+                <ToggleButton value="wickets" aria-label="runs">
                     Wickets
                 </ToggleButton>
-                <ToggleButton value="average">
+                <ToggleButton value="5whs">
                     5 Wickets
                 </ToggleButton>
-                <ToggleButton value="centuries">
+                <ToggleButton value="bestfigures">
                     Best Figures
                 </ToggleButton>
-                <ToggleButton value="highscore">
+                <ToggleButton value="average">
                     Average
                 </ToggleButton>
             </ToggleButtonGroup>
