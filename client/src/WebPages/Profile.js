@@ -135,11 +135,13 @@ class Profile extends React.Component {
                         <div className={classes.buttonGroup}>
                             <DisciplineButton tableData={this.state.tableData} onTableDataChange={this.handleTableDataChange} id={this.state.id}/>
                         </div>
-                        <DataGrid
-                            getRowId={(r) => r.id}
-                            rows={Array.from(this.state.tableData)}
-                            columns={this.state.columns}
-                            pageSize={40}  />
+                        <div className={classes.table}>
+                            <DataGrid
+                                getRowId={(r) => r.id}
+                                rows={Array.from(this.state.tableData)}
+                                columns={this.state.columns}
+                                pageSize={40}  />
+                        </div>
                     </Grid>
                 </Grid>
             </Container>
@@ -154,7 +156,10 @@ const styles = theme => ({
         height: 1300
     },
     table: {
-        height: 300,
+        height: 400,
+        '& div[data-rowIndex][role="row"]:nth-of-type(odd)': {
+            backgroundColor: theme.palette.action.disabledBackground
+        }
     },
     grid: {
         minHeight: 500,

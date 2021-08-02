@@ -15,8 +15,6 @@ class Players extends React.Component {
         this.state = {view: "runs",
             players: [],
             columns:[],
-            data:[],
-            bowling: [],
             careerGraphData: [],
             careerGraphStat: "runs",
             careerBowlingGraphData: [],
@@ -172,7 +170,7 @@ class Players extends React.Component {
                         {/*</Grid>*/}
                         {/*<Grid item xs={5}>*/}
                         {/*    <h4 style={{ align: "centre" }}>Career Bowling</h4>*/}
-                        <BiAxialBarChart data={this.state.bowling} yaxis="wickets" />
+                        <BiAxialBarChart stat={this.state.careerBowlingGraphStat} data={this.state.careerBowlingGraphData} />
                     </Grid>
                 {/*    Here we could have the best stats by season. And also choose to view the stats for a season? */}
                 </Grid>

@@ -44,14 +44,14 @@ class PlayerProfileCard extends React.Component {
                             <Typography variant="body2" color="textSecondary" component="p">
                                 <Grid container spacing={2}>
                                     <Grid item xs={6}>
-                                        Debut: {debut["debut"]} {<br/>}
-                                        Seasons:  { debut["seasons"] } {<br/>}
-                                        Matches:  { profile["matches"] }
+                                        Debut: &emsp;&emsp;   {debut["debut"]} {<br/>}
+                                        Seasons: &emsp; { debut["seasons"] } {<br/>}
+                                        Matches: &emsp; { profile["matches"] }
                                     </Grid>
                                     <Grid item xs={6}>
-                                        Runs: {profile["runs"]}     {<br/>}
-                                        Wickets: { profile["wickets"] }     {<br/>}
-                                        Catches: { profile["catches"] }
+                                        Runs: &emsp; &emsp; {profile["runs"]}     {<br/>}
+                                        Wickets:&emsp; { profile["wickets"] }     {<br/>}
+                                        Catches:&emsp; { profile["catches"] }
                                     </Grid>
                                 </Grid>
                             </Typography>
