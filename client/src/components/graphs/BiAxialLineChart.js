@@ -29,7 +29,7 @@ export default class BiAxialLineChart extends React.Component {
                 {/*/>*/}
 
                 <Tooltip />
-                <Legend offset={-5}  />
+                <Legend offset={-20}  />
                 <Line  yAxisId="left" type="monotone" dataKey={this.props.stat} stroke="#8884d8" activeDot={{ r: 8 }} />
                 {/*<Line  yAxisId="right" type="monotone" dataKey="average" stroke="#82ca9d" />*/}
             </LineChart>

@@ -44,7 +44,7 @@ class PlayerProfileCard extends React.Component {
                             <Typography variant="body2" color="textSecondary" component="p">
                                 <Grid container spacing={2}>
                                     <Grid item xs={6}>
-                                        Debut: &emsp;&emsp;   {debut["debut"]} {<br/>}
+                                        Debut: <span style={{display:"inline-block", width:20}}/>   {debut["debut"]} {<br/>}
                                         Seasons: &emsp; { debut["seasons"] } {<br/>}
                                         Matches: &emsp; { profile["matches"] }
                                     </Grid>

@@ -3,6 +3,7 @@ import * as React from "react";
 import {Navbar, NavDropdown, Nav, Form, Button, FormControl } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap"
 import PlayerSearchBar from "./PlayerSearchBar";
+import Tooltip from '@material-ui/core/Tooltip';
 // import {Link} from "react-router-dom";
 
 class NavBar extends React.Component{
@@ -35,7 +36,13 @@ class NavBar extends React.Component{
                                 {/*    <NavDropdown.Item>Link</NavDropdown.Item>*/}
                                 {/*</LinkContainer>*/}
                                 <NavDropdown.Item disabled href="/Batting/1">First XI</NavDropdown.Item>
-                                <NavDropdown.Item disabled href="/Batting/2">Second XI</NavDropdown.Item>
+                                {/*<span>*/}
+                                    <NavDropdown.Item href="">
+                                            {/*<Tooltip title="not yet available">*/}
+                                                Second XI
+                                            {/*</Tooltip>*/}
+                                    </NavDropdown.Item>
+                                {/*</span>*/}
                                 <NavDropdown.Item disabled href="/Batting/3">Third XI</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="/Batting/0">Career</NavDropdown.Item>

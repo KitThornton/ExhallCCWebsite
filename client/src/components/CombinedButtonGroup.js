@@ -25,7 +25,6 @@ class CombinedButtonGroup extends React.Component {
     }
 
     handleInput(e) {
-        // this.setData(e).then(r => r);
         this.props.onGraphDataChange(e);
     }
 
@@ -40,7 +39,7 @@ class CombinedButtonGroup extends React.Component {
                     <Button onClick={() => this.handleInput("appearances")}>Appearances</Button>
                     <Button onClick={() => this.handleInput("runs")} >Runs</Button>
                     <Button onClick={() => this.handleInput("wickets")} >Wickets</Button>
-                    <Button onClick={() => this.handleInput("highScore")} >HighScore</Button>
+                    <Button onClick={() => this.handleInput("highscore")} >HighScore</Button>
                     <Button onClick={() => this.handleInput("bataverage")} >Average (bat)</Button>
                     <Button onClick={() => this.handleInput("bowlaverage")} >Average (bowl)</Button>
                 </ButtonGroup>
