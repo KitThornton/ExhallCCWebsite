@@ -3,10 +3,10 @@ import {GridApi, GridCellValue, GridColDef} from "@material-ui/data-grid";
 import Button from "@material-ui/core/Button";
 
 const columns: GridColDef[] = [
-    { field: 'playerid', headerName: 'ID', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
-    { field: 'playername', headerName: 'Name', flex: 1, headerAlign: 'center', align: "center"},
-    { field: 'seasons', headerName: 'Seasons', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
-    { field: 'matches', headerName: 'Matches', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
+    {field: 'playerid', headerName: 'ID', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
+    {field: 'playername', headerName: 'Name', flex: 1, headerAlign: 'center', align: "center"},
+    {field: 'seasons', headerName: 'Seasons', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
+    {field: 'matches', headerName: 'Matches', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
     {
         field: "test",
         headerName: " ",

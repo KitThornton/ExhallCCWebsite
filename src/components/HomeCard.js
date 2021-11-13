@@ -1,5 +1,5 @@
 import React from "react";
-import {Typography, CardMedia, CardContent, CardActionArea, Card, makeStyles } from "@material-ui/core";
+import {Card, CardActionArea, CardContent, CardMedia, makeStyles, Typography} from "@material-ui/core";
 import img from "../images/ExhallCC1.png"
 
 const useStyles = makeStyles({
@@ -29,18 +29,19 @@ export default function MediaCard() {
                         Exhall and Wixford CC
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        View all statistics collected from 1956 to the present day. Search via player, teams, season and award!
+                        View all statistics collected from 1956 to the present day. Search via player, teams, season and
+                        award!
                     </Typography>
                 </CardContent>
             </CardActionArea>
-          {/*  <CardActions>*/}
-          {/*  <Button size="small" href="/AboutTheClub" color="primary">*/}
-          {/*    About the club*/}
-          {/*  </Button>*/}
-          {/*  <Button size="small" href="/Players" color="primary">*/}
-          {/*      Players*/}
-          {/*  </Button>*/}
-          {/*</CardActions>*/}
+            {/*  <CardActions>*/}
+            {/*  <Button size="small" href="/AboutTheClub" color="primary">*/}
+            {/*    About the club*/}
+            {/*  </Button>*/}
+            {/*  <Button size="small" href="/Players" color="primary">*/}
+            {/*      Players*/}
+            {/*  </Button>*/}
+            {/*</CardActions>*/}
         </Card>
     );
 }

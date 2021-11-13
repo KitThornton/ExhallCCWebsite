@@ -1,6 +1,6 @@
 import React from 'react';
-import { Grid, withStyles } from "@material-ui/core";
-import { DataGrid } from "@material-ui/data-grid";
+import {Grid, withStyles} from "@material-ui/core";
+import {DataGrid} from "@material-ui/data-grid";
 import Container from '@material-ui/core/Container';
 import BiAxialLineChart from "../components/graphs/BiAxialLineChart";
 import PageHeader from "../components/PageHeader";
@@ -88,32 +88,34 @@ class Profile extends React.Component {
 
         switch (disc) {
             case "batting":
-                this.setState( { columns:  battingColumns})
+                this.setState({columns: battingColumns})
                 break;
             case "bowling":
-                this.setState( { columns:  bowlingColumns})
+                this.setState({columns: bowlingColumns})
                 break;
-           case "fielding":
-                this.setState( { columns:  fieldingColumns})
+            case "fielding":
+                this.setState({columns: fieldingColumns})
+                break;
+            default:
                 break;
         }
 
-        this.setState({ tableData: data })
+        this.setState({tableData: data})
     };
 
     handleGraphDataChange = (stat) => {
-        this.setState({ graphStat: stat });
+        this.setState({graphStat: stat});
         this.getKeyPlayerStats().then(r => r);
     }
 
     render() {
 
-        const { classes } = this.props;
+        const {classes} = this.props;
 
         return (
             <Container className={classes.root}>
-                <Grid container spacing={2} style={{ height: 50, padding: "15px" }}>
-                    <Grid item xs={12} >
+                <Grid container spacing={2} style={{height: 50, padding: "15px"}}>
+                    <Grid item xs={12}>
                         <PageHeader
                             header={this.state.playerName}
                         />
@@ -125,22 +127,23 @@ class Profile extends React.Component {
                         />
                     </Grid>
                     <Grid item xs={8}>
-                        <CombinedButtonGroup onGraphDataChange={this.handleGraphDataChange} id={this.state.id} />
-                        <BiAxialLineChart data={this.state.graphData} stat={this.state.graphStat} />
+                        <CombinedButtonGroup onGraphDataChange={this.handleGraphDataChange} id={this.state.id}/>
+                        <BiAxialLineChart data={this.state.graphData} stat={this.state.graphStat}/>
                     </Grid>
                     <Grid item xs={4}>
-                        <PlayerPieChart rawdata={this.state.tableData} />
+                        <PlayerPieChart rawdata={this.state.tableData}/>
                     </Grid>
-                    <Grid item xs={12} style={{ height: 600, padding: "25px" }}>
+                    <Grid item xs={12} style={{height: 600, padding: "25px"}}>
                         <div className={classes.buttonGroup}>
-                            <DisciplineButton tableData={this.state.tableData} onTableDataChange={this.handleTableDataChange} id={this.state.id}/>
+                            <DisciplineButton tableData={this.state.tableData}
+                                              onTableDataChange={this.handleTableDataChange} id={this.state.id}/>
                         </div>
                         <div className={classes.table}>
                             <DataGrid
                                 getRowId={(r) => r.id}
                                 rows={Array.from(this.state.tableData)}
                                 columns={this.state.columns}
-                                pageSize={40}  />
+                                pageSize={40}/>
                         </div>
                     </Grid>
                 </Grid>

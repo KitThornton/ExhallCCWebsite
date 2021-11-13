@@ -5,8 +5,8 @@ import CardGroup from "../components/CardGroup";
 function Home() {
     return (
         <Fragment>
-            <HomeCard />
-            <CardGroup />
+            <HomeCard/>
+            <CardGroup/>
         </Fragment>
     );
 }

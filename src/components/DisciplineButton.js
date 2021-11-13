@@ -8,7 +8,7 @@ class DisciplineButton extends React.Component {
     constructor(props) {
         super(props);
         this.handleInput = this.handleInput.bind(this);
-        this.state = { id: props.id}
+        this.state = {id: props.id}
     }
 
     setData = async (e) => {
@@ -23,6 +23,8 @@ class DisciplineButton extends React.Component {
                 break;
             case "batting":
                 q = `http://localhost:4000/batting/seasons/${this.state.id}`;
+                break;
+            default:
                 break;
         }
 
@@ -43,12 +45,12 @@ class DisciplineButton extends React.Component {
     render() {
         return (
             // <div>
-                <ButtonGroup variant="contained" color="primary"
-                             aria-label="contained primary button group">
-                    <Button onClick={() => this.handleInput("batting")}>Batting</Button>
-                    <Button onClick={() => this.handleInput("bowling")} >Bowling</Button>
-                    <Button onClick={() => this.handleInput("fielding")} >Fielding</Button>
-                </ButtonGroup>
+            <ButtonGroup variant="contained" color="primary"
+                         aria-label="contained primary button group">
+                <Button onClick={() => this.handleInput("batting")}>Batting</Button>
+                <Button onClick={() => this.handleInput("bowling")}>Bowling</Button>
+                <Button onClick={() => this.handleInput("fielding")}>Fielding</Button>
+            </ButtonGroup>
             // {/*</div>*/}
         )
     }

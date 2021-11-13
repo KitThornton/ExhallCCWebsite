@@ -1,7 +1,6 @@
-
 function Awards() {
     return (
-        <div style={{ padding: 0 }} >
+        <div style={{padding: 0}}>
             Awards
         </div>
     );

@@ -1,23 +1,28 @@
 import React from 'react';
 import {
-    Card, CardActionArea, CardActions, CardContent, CardMedia, makeStyles, Paper,
-    Typography, Avatar, CardHeader, Grid, withStyles
+    Avatar,
+    Card,
+    CardActionArea,
+    CardActions,
+    CardContent,
+    CardHeader,
+    CardMedia,
+    Grid,
+    Paper,
+    Typography,
+    withStyles
 } from "@material-ui/core";
 import blue from '@material-ui/core/colors/blue';
 import avatar from "../images/avatar.png";
 
 class PlayerProfileCard extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
 
         const playerName = this.props.playername;
-        const debut = !this.props.debut ? [] : this.props.debut[0] ;
-        const profile = !this.props.profileData ? [] : this.props.profileData[0] ;
-        const { classes } = this.props;
+        const debut = !this.props.debut ? [] : this.props.debut[0];
+        const profile = !this.props.profileData ? [] : this.props.profileData[0];
+        const {classes} = this.props;
 
         return (
             <Paper elevation={3}>
@@ -44,14 +49,15 @@ class PlayerProfileCard extends React.Component {
                             <Typography variant="body2" color="textSecondary" component="p">
                                 <Grid container spacing={2}>
                                     <Grid item xs={6}>
-                                        Debut: <span style={{display:"inline-block", width:20}}/>   {debut["debut"]} {<br/>}
-                                        Seasons: &emsp; { debut["seasons"] } {<br/>}
-                                        Matches: &emsp; { profile["matches"] }
+                                        Debut: <span style={{display: "inline-block", width: 20}}/> {debut["debut"]} {
+                                        <br/>}
+                                        Seasons: &emsp; {debut["seasons"]} {<br/>}
+                                        Matches: &emsp; {profile["matches"]}
                                     </Grid>
                                     <Grid item xs={6}>
-                                        Runs: &emsp; &emsp; {profile["runs"]}     {<br/>}
-                                        Wickets:&emsp; { profile["wickets"] }     {<br/>}
-                                        Catches:&emsp; { profile["catches"] }
+                                        Runs: &emsp; &emsp; {profile["runs"]} {<br/>}
+                                        Wickets:&emsp; {profile["wickets"]} {<br/>}
+                                        Catches:&emsp; {profile["catches"]}
                                     </Grid>
                                 </Grid>
                             </Typography>

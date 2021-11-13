@@ -1,6 +1,6 @@
 import React from "react";
-import { DataGrid } from "@material-ui/data-grid";
-import {Grid, withStyles } from "@material-ui/core";
+import {DataGrid} from "@material-ui/data-grid";
+import {Grid, withStyles} from "@material-ui/core";
 import Container from '@material-ui/core/Container';
 import BiAxialBarChart from "../components/graphs/BiAxialBarChart";
 import BattingButtonGroup from "../components/BattingButtonGroup";
@@ -12,9 +12,10 @@ class Players extends React.Component {
 
     constructor() {
         super();
-        this.state = {view: "runs",
+        this.state = {
+            view: "runs",
             players: [],
-            columns:[],
+            columns: [],
             careerGraphData: [],
             careerGraphStat: "runs",
             careerBowlingGraphData: [],
@@ -67,13 +68,15 @@ class Players extends React.Component {
                 case "centuries":
                     q = `http://localhost:4000/batting/CareerCenturies/${count}`;
                     break;
+                default:
+                    break;
             }
 
             const response = await fetch(q);
             const jsonData = await response.json();
 
-            this.setState({ careerGraphStat: stat });
-            this.setState({ careerGraphData: jsonData.rows });
+            this.setState({careerGraphStat: stat});
+            this.setState({careerGraphData: jsonData.rows});
 
         } catch (err) {
             console.error(err.message);
@@ -109,13 +112,15 @@ class Players extends React.Component {
                 case "centuries":
                     q = `http://localhost:4000/bowling/CareerCenturies/${count}`;
                     break;
+                default:
+                    break;
             }
 
             const response = await fetch(q);
             const jsonData = await response.json();
 
-            this.setState({ careerBowlingGraphStat: stat });
-            this.setState({ careerBowlingGraphData: jsonData.rows });
+            this.setState({careerBowlingGraphStat: stat});
+            this.setState({careerBowlingGraphData: jsonData.rows});
 
         } catch (err) {
             console.error(err.message);
@@ -124,13 +129,13 @@ class Players extends React.Component {
 
     render() {
 
-        const { classes } = this.props;
+        const {classes} = this.props;
 
-        return(
+        return (
             <Container className={classes.root}>
                 <PageHeader
-                    header = "Player Database"
-                    description = "Search via player name, view player caps and link to their profile page."
+                    header="Player Database"
+                    description="Search via player name, view player caps and link to their profile page."
                 />
                 <Grid container spacing={5}
                       alignItems="center"
@@ -143,36 +148,38 @@ class Players extends React.Component {
                             getRowId={(r) => r.playerid}
                             rows={this.state.players}
                             columns={this.state.columns}
-                            pageSize={40}  />
+                            pageSize={40}/>
                     </Grid>
                     <Grid item xs={6} className={classes.table}>
                         <div className={classes.div}>
-                            <BattingButtonGroup onCareerGraphDataChange={this.handleCareerBattingGraphDataChange} />
+                            <BattingButtonGroup onCareerGraphDataChange={this.handleCareerBattingGraphDataChange}/>
                         </div>
 
-                        <BiAxialBarChart stat={this.state.careerGraphStat} data={this.state.careerGraphData} />
+                        <BiAxialBarChart stat={this.state.careerGraphStat} data={this.state.careerGraphData}/>
                     </Grid>
 
                     {/*    New row    */}
                     <Grid item xs={6}>
-                        <div className={classes.div} >
-                            <BowlingButtonGroup onCareerGraphDataChange={this.handleCareerBowlingGraphDataChange} />
+                        <div className={classes.div}>
+                            <BowlingButtonGroup onCareerGraphDataChange={this.handleCareerBowlingGraphDataChange}/>
                         </div>
 
-                        <BiAxialBarChart stat={this.state.careerBowlingGraphStat} data={this.state.careerBowlingGraphData} />
+                        <BiAxialBarChart stat={this.state.careerBowlingGraphStat}
+                                         data={this.state.careerBowlingGraphData}/>
                     </Grid>
 
                     <Grid item xs={6}>
-                        <div className={classes.div} >
-                            <BowlingButtonGroup />
+                        <div className={classes.div}>
+                            <BowlingButtonGroup/>
                         </div>
 
                         {/*</Grid>*/}
                         {/*<Grid item xs={5}>*/}
                         {/*    <h4 style={{ align: "centre" }}>Career Bowling</h4>*/}
-                        <BiAxialBarChart stat={this.state.careerBowlingGraphStat} data={this.state.careerBowlingGraphData} />
+                        <BiAxialBarChart stat={this.state.careerBowlingGraphStat}
+                                         data={this.state.careerBowlingGraphData}/>
                     </Grid>
-                {/*    Here we could have the best stats by season. And also choose to view the stats for a season? */}
+                    {/*    Here we could have the best stats by season. And also choose to view the stats for a season? */}
                 </Grid>
             </Container>
         )

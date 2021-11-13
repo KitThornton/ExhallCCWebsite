@@ -1,6 +1,17 @@
 // Let's try creating a card group to be displayed on the home page under the first image
 import React from "react";
-import {Card, CardActions, Grid, makeStyles, Paper, Typography, Button, CardContent, CardMedia, CardActionArea  } from "@material-ui/core";
+import {
+    Button,
+    Card,
+    CardActionArea,
+    CardActions,
+    CardContent,
+    CardMedia,
+    Grid,
+    makeStyles,
+    Paper,
+    Typography
+} from "@material-ui/core";
 import img1 from '../images/ExhallCC4.jpg';
 import img2 from '../images/ExhallCC2.jpeg';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
@@ -21,8 +32,8 @@ const useStyles = makeStyles({
 const CardGroup = () => {
     const classes = useStyles();
 
-    return(
-        <Grid className={classes.root}  container spacing={8}>
+    return (
+        <Grid className={classes.root} container spacing={8}>
             <Grid item xs={4}>
                 <Paper elevation={3}>
                     <Card>
@@ -45,7 +56,8 @@ const CardGroup = () => {
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
-                            <Button href="/Players" variant="outlined" size="large" color="primary" startIcon={<GroupIcon />}>
+                            <Button href="/Players" variant="outlined" size="large" color="primary"
+                                    startIcon={<GroupIcon/>}>
                                 Players
                             </Button>
                         </CardActions>
@@ -72,7 +84,8 @@ const CardGroup = () => {
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
-                            <Button href="/Statistics" variant="outlined" size="large" color="primary" startIcon={<EqualizerIcon />}>
+                            <Button href="/Statistics" variant="outlined" size="large" color="primary"
+                                    startIcon={<EqualizerIcon/>}>
                                 Statistics
                             </Button>
                         </CardActions>
@@ -101,7 +114,8 @@ const CardGroup = () => {
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
-                            <Button href="/Awards" variant="outlined" size="large" color="primary" startIcon={<SportsCricketIcon />}>
+                            <Button href="/Awards" variant="outlined" size="large" color="primary"
+                                    startIcon={<SportsCricketIcon/>}>
                                 Awards
                             </Button>
                         </CardActions>

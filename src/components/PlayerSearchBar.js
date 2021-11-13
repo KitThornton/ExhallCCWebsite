@@ -37,12 +37,13 @@ class PlayerSelect extends React.Component {
 
     render() {
 
-        const { classes } = this.props;
+        const {classes} = this.props;
 
         return (
             <Autocomplete
                 id="country-select-demo"
-                style={{ width: 300,
+                style={{
+                    width: 300,
                     backgroundColor: "#f2f2f2",
                     outlineColor: "#f2f2f2",
                     borderColor: 'transparent'
@@ -57,16 +58,16 @@ class PlayerSelect extends React.Component {
                 renderOption={(option) => (
                     <React.Fragment>
                         {/*<span>*/}
-                            <Button
-                                href= {CreateURL(option.playerid)}
-                                style={{
-                                    minWidth: '100%',
-                                    textAlign: 'left',
-                                    alignSelf: 'stretch'
-                                }}
-                            >
-                                {option.playername.toProperCase()}
-                            </Button>
+                        <Button
+                            href={CreateURL(option.playerid)}
+                            style={{
+                                minWidth: '100%',
+                                textAlign: 'left',
+                                alignSelf: 'stretch'
+                            }}
+                        >
+                            {toProperCase(option.playername)}
+                        </Button>
                         {/*</span>*/}
                     </React.Fragment>
                 )}
@@ -89,8 +90,10 @@ class PlayerSelect extends React.Component {
     }
 }
 
-String.prototype.toProperCase = function () {
-    return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+function toProperCase (str) {
+    return str.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
 };
 
 const styles = theme => ({

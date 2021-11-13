@@ -11,7 +11,7 @@ export default class BattingButtonGroup extends React.Component {
 
     handleOnChange(e, value) {
         if (value !== null) {
-            this.setState({ view: value });
+            this.setState({view: value});
         }
 
         this.props.onCareerGraphDataChange(value);
@@ -21,8 +21,8 @@ export default class BattingButtonGroup extends React.Component {
         return (
             <ToggleButtonGroup orientation="horizontal"
                                value={this.state.view}
-                               exclusive = {true}
-                               size = "small"
+                               exclusive={true}
+                               size="small"
                                onChange={this.handleOnChange}>
                 <ToggleButton value="caps">
                     caps

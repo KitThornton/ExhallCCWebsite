@@ -1,4 +1,4 @@
 # remove node modules
 # dependencies
 node_modules
-test
+build
