@@ -1,4 +1,4 @@
-import * as ActionTypes from '../actions/ActionTypes.js';
+import * as ActionTypes from '../actions/types/Players';
 
 const initialState = {
     players: []
@@ -11,7 +11,7 @@ const executeGetAllPlayersSuccess = (state, action) => {
     }
 }
 
-const playerReducer = (state = initialState, action) => {
+const playerRepository = (state = initialState, action) => {
     switch (action.type) {
         case ActionTypes.GET_ALL_PLAYERS:
             return executeGetAllPlayersSuccess(state, action)
@@ -20,4 +20,4 @@ const playerReducer = (state = initialState, action) => {
     }
 }
 
-export default playerReducer
+export default playerRepository

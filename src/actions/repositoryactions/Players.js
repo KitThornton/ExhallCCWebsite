@@ -1,5 +1,5 @@
 import * as ActionTypes from '../types/Players'
-const baseUrl = 'http://localhost:5001/';
+import {local} from "../../Store";
 
 const submitGetAllPlayersSuccess = (data) => {
     return {
@@ -10,7 +10,7 @@ const submitGetAllPlayersSuccess = (data) => {
 
 export const getAllPlayers = () => {
     return (dispatch) => {
-        fetch(baseUrl + "players/details")
+        fetch(local + "/Player")
             .then(res => res.json())
             .then((result) => {
                     dispatch(submitGetAllPlayersSuccess(result))

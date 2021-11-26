@@ -2,11 +2,13 @@ import React from "react";
 import {DataGrid} from "@mui/x-data-grid";
 import {Grid} from "@mui/material";
 import Container from '@mui/material/Container';
+import {connect} from "react-redux";
 import BiAxialBarChart from "../components/graphs/BiAxialBarChart";
-import BattingButtonGroup from "../components/BattingButtonGroup";
+import BattingButtonGroup from "../components/buttons/BattingButtonGroup";
 import Columns from "../components/columns/PlayerDatabase";
 import PageHeader from "../components/PageHeader";
-import BowlingButtonGroup from "../components/BowlingButtonGroup";
+import BowlingButtonGroup from "../components/buttons/BowlingButtonGroup";
+import * as BowlingActions from '../actions/repositoryactions/Players'
 
 class Players extends React.Component {
 
@@ -24,23 +26,25 @@ class Players extends React.Component {
     }
 
     componentDidMount() {
-        this.getPlayers().then(r => r);
+        // this.getPlayers().then(r => r);
         this.getCareerBowlingGraphStat("wickets").then(r => r);
         this.getCareerBattingGraphStat("runs").then(r => r);
-        this.setState({columns: Columns})
+        this.setState({columns: Columns});
+
+        this.props.onGetAllPlayers();
     }
 
-    getPlayers = async () => {
-        try {
-            const response = await fetch("http://localhost:4000/players/details");
-            const jsonData = await response.json();
-
-            this.setState({players: jsonData.rows});
-
-        } catch (err) {
-            console.error(err.message);
-        }
-    };
+    // getPlayers = async () => {
+    //     try {
+    //         const response = await fetch("http://localhost:4000/players/details");
+    //         const jsonData = await response.json();
+    //
+    //         this.setState({players: jsonData.rows});
+    //
+    //     } catch (err) {
+    //         console.error(err.message);
+    //     }
+    // };
 
     handleCareerBattingGraphDataChange = (stat) => {
         this.getCareerBattingGraphStat(stat).then(r => r);
@@ -146,7 +150,7 @@ class Players extends React.Component {
                             className="table"
                             width={"50%"}
                             getRowId={(r) => r.playerid}
-                            rows={this.state.players}
+                            rows={this.props.players}
                             columns={this.state.columns}
                             pageSize={40}/>
                     </Grid>
@@ -209,4 +213,14 @@ class Players extends React.Component {
 //     }
 // });
 
-export default Players;
+const mapStateToProps = (state) => {
+    return {
+        players: state.players
+    }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    onGetAllPlayers: () => dispatch(BowlingActions.getAllPlayers())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Players)

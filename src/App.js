@@ -1,16 +1,16 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 // Components
-import Home from './WebPages/Home';
-import AboutTheClub from "./WebPages/AboutTheClub";
-import NavBar from "./components/Navbar";
-import Players from "./WebPages/Players";
-import Profile from "./WebPages/Profile";
-import Batting from "./WebPages/Batting";
-import Bowling from "./WebPages/Bowling";
-import Awards from "./WebPages/Awards";
-import Footer from "./components/Footer"
-import PlayerTrophies from "./WebPages/PlayerTrophies"
+import Home from './webpages/Home';
+import AboutTheClub from "./webpages/AboutTheClub";
+import NavBar from "./components/navbar/Navbar";
+import Players from "./webpages/Players";
+import Profile from "./webpages/Profile";
+import Batting from "./webpages/Batting";
+import Bowling from "./webpages/Bowling";
+import Awards from "./webpages/Awards";
+// import Footer from "./components/Footer"
+import PlayerTrophies from "./webpages/PlayerTrophies"
 
 const App = () => (
     <div style={{padding: 0}}>
@@ -29,7 +29,7 @@ const App = () => (
                 <Route exact path="/Awards" component={Awards}/>
                 <Route exact path="/Trophies/Players" component={PlayerTrophies}/>
             </Switch>
-            <Footer/>
+            {/*<Footer/>*/}
             {/*</Container>*/}
         </Router>
     </div>

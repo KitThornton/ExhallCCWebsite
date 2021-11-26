@@ -9,8 +9,8 @@ import battingColumns from "../components/columns/ProfileBatting"
 import bowlingColumns from "../components/columns/ProfileBowling"
 import fieldingColumns from "../components/columns/ProfileFielding"
 import PlayerPieChart from "../components/graphs/PlayerPieChart";
-import DisciplineButton from "../components/DisciplineButton";
-import CombinedButtonGroup from "../components/CombinedButtonGroup";
+import DisciplineButton from "../components/buttons/DisciplineButton";
+import CombinedButtonGroup from "../components/buttons/CombinedButtonGroup";
 
 class Profile extends React.Component {
 
