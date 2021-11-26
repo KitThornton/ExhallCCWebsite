@@ -1,9 +1,9 @@
 import React from "react";
 // import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
-import {Grid} from "@material-ui/core";
+import {Grid} from "@mui/material";
 // import Box from '@material-ui/core/Box';
-import {withStyles} from '@material-ui/core/styles'
-import grey from '@material-ui/core/colors/grey';
+// import {withStyles} from '@mui/material/styles'
+import grey from '@mui/material/colors/grey';
 
 
 class Footer extends React.Component {
@@ -15,7 +15,7 @@ class Footer extends React.Component {
         return (
             <Grid container alignItems="center"
                   justify="center">
-                <Grid className={classes.root} item={12}>
+                <Grid className="root" item={12}>
                     &copy; {new Date().getFullYear()} Copyright: Kit Thornton
                 </Grid>
 
@@ -27,16 +27,16 @@ class Footer extends React.Component {
     }
 }
 
-const useStyles = theme => ({
-    root: {
-        display: 'flex',
-        minHeight: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        backgroundColor: grey[800],
-        color: grey[100]
-    },
-});
+// const useStyles = theme => ({
+//     root: {
+//         display: 'flex',
+//         minHeight: 50,
+//         alignItems: 'center',
+//         justifyContent: 'center',
+//         width: '100%',
+//         backgroundColor: grey[800],
+//         color: grey[100]
+//     },
+// });
 
-export default withStyles(useStyles)(Footer);
+export default Footer;

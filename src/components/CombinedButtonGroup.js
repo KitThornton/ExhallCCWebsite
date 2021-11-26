@@ -1,8 +1,8 @@
 // Here will be a button group that'll span the container and dictate the stat displayed in the graph
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import {withStyles} from "@material-ui/core";
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import {withStyles} from "@mui/material";
 
 class CombinedButtonGroup extends React.Component {
 
@@ -29,10 +29,8 @@ class CombinedButtonGroup extends React.Component {
 
     render() {
 
-        const {classes} = this.props;
-
         return (
-            <div className={classes.root}>
+            <div className="root">
                 <ButtonGroup variant="text" color="primary"
                              aria-label="text primary button group">
                     <Button onClick={() => this.handleInput("appearances")}>Appearances</Button>
@@ -47,11 +45,11 @@ class CombinedButtonGroup extends React.Component {
     }
 }
 
-const styles = theme => ({
-    root: {
-        width: "100%",
-        textAlign: "center"
-    }
-});
+// const styles = theme => ({
+//     root: {
+//         width: "100%",
+//         textAlign: "center"
+//     }
+// });
 
-export default withStyles(styles)(CombinedButtonGroup)
+export default CombinedButtonGroup

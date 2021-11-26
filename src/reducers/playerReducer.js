@@ -1,4 +1,4 @@
-import * as ActionTypes from '../actions/actionTypes';
+import * as ActionTypes from '../actions/ActionTypes.js';
 
 const initialState = {
     players: []

@@ -1,7 +1,7 @@
 // So we'll have a header for each page. Pass in the text for the header and brief description. This will  be
 // definitely changed later.
 import React, {Fragment} from "react";
-import {Grid} from "@material-ui/core";
+import {Grid} from "@mui/material";
 // import { makeStyles } from "@material-ui/core/styles";
 
 export default class PageHeader extends React.Component {

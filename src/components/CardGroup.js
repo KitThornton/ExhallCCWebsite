@@ -8,38 +8,24 @@ import {
     CardContent,
     CardMedia,
     Grid,
-    makeStyles,
     Paper,
     Typography
-} from "@material-ui/core";
+} from "@mui/material";
 import img1 from '../images/ExhallCC4.jpg';
 import img2 from '../images/ExhallCC2.jpeg';
-import EqualizerIcon from '@material-ui/icons/Equalizer';
-import GroupIcon from '@material-ui/icons/Group';
-import SportsCricketIcon from '@material-ui/icons/SportsCricket';
-
-const useStyles = makeStyles({
-    root: {
-        // maxWidth: 345,
-        padding: 20,
-        minHeight: 700
-    },
-    media: {
-        height: 300,
-    },
-});
+import EqualizerIcon from '@mui/icons-material/Equalizer';
+import GroupIcon from '@mui/icons-material/Group';
+import SportsCricketIcon from '@mui/icons-material/SportsCricket';
 
 const CardGroup = () => {
-    const classes = useStyles();
-
     return (
-        <Grid className={classes.root} container spacing={8}>
+        <Grid container spacing={8}>
             <Grid item xs={4}>
                 <Paper elevation={3}>
                     <Card>
                         <CardActionArea>
                             <CardMedia
-                                className={classes.media}
+                                className="media"
                                 image={img2}
                                 title="PLayers"
                             />
@@ -69,7 +55,7 @@ const CardGroup = () => {
                     <Card>
                         <CardActionArea>
                             <CardMedia
-                                className={classes.media}
+                                className="media"
                                 image={img1}
                                 title="Statistics"
                             />
@@ -97,7 +83,7 @@ const CardGroup = () => {
                     <Card>
                         <CardActionArea>
                             <CardMedia
-                                className={classes.media}
+                                className="media"
                                 image={img2}
                                 title="Contemplative Reptile"
                             />

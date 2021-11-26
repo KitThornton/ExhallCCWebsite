@@ -1,6 +1,6 @@
 import React from 'react';
-import {GridApi, GridCellValue, GridColDef} from "@material-ui/data-grid";
-import Button from "@material-ui/core/Button";
+import {GridApi, GridCellValue, GridColDef} from "@mui/x-data-grid";
+import Button from "@mui/material/Button";
 
 const columns: GridColDef[] = [
     {field: 'playerid', headerName: 'ID', type: 'number', flex: 1, headerAlign: 'center', align: "center"},

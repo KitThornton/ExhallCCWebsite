@@ -1,5 +1,5 @@
 import React from 'react';
-import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
+import {ToggleButton, ToggleButtonGroup} from "@mui/lab";
 
 export default class BattingButtonGroup extends React.Component {
 

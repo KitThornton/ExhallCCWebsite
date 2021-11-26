@@ -1,26 +1,12 @@
 import React from "react";
-import {Card, CardActionArea, CardContent, CardMedia, makeStyles, Typography} from "@material-ui/core";
+import {Card, CardActionArea, CardContent, CardMedia, Typography} from "@mui/material";
 import img from "../images/ExhallCC1.png"
 
-const useStyles = makeStyles({
-    root: {
-        // maxWidth: 345
-        width: "100%",
-        padding: 0
-    },
-    media: {
-        height: 470
-    }
-});
-
 export default function MediaCard() {
-    const classes = useStyles();
-
     return (
-        <Card className={classes.root}>
+        <Card>
             <CardActionArea>
                 <CardMedia
-                    className={classes.media}
                     image={img}
                     title="Exhall and Wixford CC"
                 />

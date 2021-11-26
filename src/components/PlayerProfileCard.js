@@ -10,9 +10,8 @@ import {
     Grid,
     Paper,
     Typography,
-    withStyles
-} from "@material-ui/core";
-import blue from '@material-ui/core/colors/blue';
+} from "@mui/material";
+import blue from '@mui/material/colors/blue';
 import avatar from "../images/avatar.png";
 
 class PlayerProfileCard extends React.Component {
@@ -38,7 +37,7 @@ class PlayerProfileCard extends React.Component {
                     </CardHeader>
                     <CardActionArea>
                         <CardMedia
-                            className={classes.media}
+                            className="media"
                             image={avatar}
                             title="Players"
                         />
@@ -75,13 +74,13 @@ class PlayerProfileCard extends React.Component {
     }
 }
 
-const styles = theme => ({
-    media: {
-        height: 300,
-    }, avatar: {
-        backgroundColor: blue[500],
-    },
-});
+// const styles = theme => ({
+//     media: {
+//         height: 300,
+//     }, avatar: {
+//         backgroundColor: blue[500],
+//     },
+// });
 
 function GetInitials(playerName) {
 
@@ -93,6 +92,4 @@ function CreateSubheader(debut, latest) {
     return "Years active: " + debut + " - " + latest;
 }
 
-
-export default withStyles(styles)(PlayerProfileCard);
-// export default PlayerProfileCard;
+export default PlayerProfileCard;

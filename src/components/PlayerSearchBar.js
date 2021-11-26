@@ -1,8 +1,8 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import {withStyles} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/lab/Autocomplete';
+import {withStyles} from "@mui/material";
+import {Button} from "@mui/material";
 
 function CreateURL(id) {
     let str1 = "/profile/";
@@ -49,9 +49,9 @@ class PlayerSelect extends React.Component {
                     borderColor: 'transparent'
                 }}
                 options={this.state.players}
-                classes={{
-                    option: classes.option,
-                }}
+                // classes={{
+                //     option: classes.option,
+                // }}
                 autoHighlight
                 size={"small"}
                 getOptionLabel={(option) => option.playername}
@@ -96,34 +96,17 @@ function toProperCase (str) {
     });
 };
 
-const styles = theme => ({
-    bar: {
-        width: 100
-    },
-    option: {
-        fontSize: 15,
-        '& > span': {
-            marginRight: 10,
-            fontSize: 18,
-        },
-    },
-    // inputRoot: {
-    //     color: "white",
-    //     // This matches the specificity of the default styles at https://github.com/mui-org/material-ui/blob/v4.11.3/packages/material-ui-lab/src/Autocomplete/Autocomplete.js#L90
-    //     '&[class*="MuiOutlinedInput-root"] .MuiAutocomplete-input:first-child': {
-    //         // Default left padding is 6px
-    //         paddingLeft: 26
-    //     },
-    //     "& .MuiOutlinedInput-notchedOutline": {
-    //         borderColor: "green"
-    //     },
-    //     "&:hover .MuiOutlinedInput-notchedOutline": {
-    //         borderColor: "red"
-    //     },
-    //     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    //         borderColor: "white"
-    //     }
-    // },
-});
+// const styles = theme => ({
+//     bar: {
+//         width: 100
+//     },
+//     option: {
+//         fontSize: 15,
+//         '& > span': {
+//             marginRight: 10,
+//             fontSize: 18,
+//         },
+//     },
+// });
 
-export default withStyles(styles)(PlayerSelect);
+export default PlayerSelect;
