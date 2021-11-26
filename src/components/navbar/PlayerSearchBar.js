@@ -1,7 +1,6 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/lab/Autocomplete';
-import {withStyles} from "@mui/material";
 import {Button} from "@mui/material";
 
 function CreateURL(id) {
@@ -90,7 +89,7 @@ class PlayerSelect extends React.Component {
     }
 }
 
-function toProperCase (str) {
+function toProperCase(str) {
     return str.replace(/\w\S*/g, function (txt) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });

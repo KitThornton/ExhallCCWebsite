@@ -9,10 +9,14 @@ const submitGetAllPlayersSuccess = (data) => {
 }
 
 export const getAllPlayers = () => {
+
     return (dispatch) => {
-        fetch(local + "/Player")
+
+        fetch("https://localhost:5001/Player")
             .then(res => res.json())
             .then((result) => {
+                    // let res;
+                    // res.data = dummyPlayers;
                     dispatch(submitGetAllPlayersSuccess(result))
                 },
                 (error) => {
@@ -21,3 +25,14 @@ export const getAllPlayers = () => {
             )
     }
 }
+
+const dummyPlayers = [
+    {
+        name: "Kit T",
+        Id: 1
+    },
+    {
+        name: "Kit T",
+        Id: 2
+    }
+]

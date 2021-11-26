@@ -3,8 +3,8 @@ import {GridApi, GridCellValue, GridColDef} from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 
 const columns: GridColDef[] = [
-    {field: 'playerid', headerName: 'ID', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
-    {field: 'playername', headerName: 'Name', flex: 1, headerAlign: 'center', align: "center"},
+    {field: 'id', headerName: 'ID', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
+    {field: 'name', headerName: 'Name', flex: 1, headerAlign: 'center', align: "center"},
     {field: 'seasons', headerName: 'Seasons', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
     {field: 'matches', headerName: 'Matches', type: 'number', flex: 1, headerAlign: 'center', align: "center"},
     {

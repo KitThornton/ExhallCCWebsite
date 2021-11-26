@@ -11,7 +11,6 @@ import {
     Paper,
     Typography,
 } from "@mui/material";
-import blue from '@mui/material/colors/blue';
 import avatar from "../images/avatar.png";
 
 class PlayerProfileCard extends React.Component {

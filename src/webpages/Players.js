@@ -8,7 +8,7 @@ import BattingButtonGroup from "../components/buttons/BattingButtonGroup";
 import Columns from "../components/columns/PlayerDatabase";
 import PageHeader from "../components/PageHeader";
 import BowlingButtonGroup from "../components/buttons/BowlingButtonGroup";
-import * as BowlingActions from '../actions/repositoryactions/Players'
+import * as PlayerRepoActions from '../actions/repositoryactions/Players'
 
 class Players extends React.Component {
 
@@ -16,7 +16,7 @@ class Players extends React.Component {
         super();
         this.state = {
             view: "runs",
-            players: [],
+            // players: [],
             columns: [],
             careerGraphData: [],
             careerGraphStat: "runs",
@@ -149,7 +149,7 @@ class Players extends React.Component {
                         <DataGrid
                             className="table"
                             width={"50%"}
-                            getRowId={(r) => r.playerid}
+                            getRowId={(r) => r.id}
                             rows={this.props.players}
                             columns={this.state.columns}
                             pageSize={40}/>
@@ -220,7 +220,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    onGetAllPlayers: () => dispatch(BowlingActions.getAllPlayers())
+    onGetAllPlayers: () => dispatch(PlayerRepoActions.getAllPlayers())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Players)
