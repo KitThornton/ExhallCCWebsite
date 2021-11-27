@@ -13,7 +13,7 @@ const executeGetAllPlayersSuccess = (state, action) => {
 
 export const playerReducer = (state = initialState, action) => {
     switch (action.type) {
-        case PlayersActionTypes.GET_ALL_PLAYERS:
+        case PlayersActionTypes.GET_ALL_PLAYER_APPEARANCES:
             return executeGetAllPlayersSuccess(state, action)
         default:
             return state;

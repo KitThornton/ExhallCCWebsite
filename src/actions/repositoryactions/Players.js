@@ -1,23 +1,21 @@
 import * as ActionTypes from '../types/Players'
-import {local} from "../../Store";
+import {baseURL} from "../../Store";
 
-const submitGetAllPlayersSuccess = (data) => {
+const submitGetAllPlayerAppearancesSuccess = (data) => {
     return {
-        type: ActionTypes.GET_ALL_PLAYERS,
+        type: ActionTypes.GET_ALL_PLAYER_APPEARANCES,
         data: data
     }
 }
 
-export const getAllPlayers = () => {
+export const getAllPlayerAppearances = () => {
 
     return (dispatch) => {
 
-        fetch("https://localhost:5001/Player")
+        fetch(baseURL + "/player/appearances")
             .then(res => res.json())
             .then((result) => {
-                    // let res;
-                    // res.data = dummyPlayers;
-                    dispatch(submitGetAllPlayersSuccess(result))
+                    dispatch(submitGetAllPlayerAppearancesSuccess(result))
                 },
                 (error) => {
                     console.log(error);

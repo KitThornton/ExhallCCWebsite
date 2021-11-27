@@ -220,7 +220,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    onGetAllPlayers: () => dispatch(PlayerRepoActions.getAllPlayers())
+    onGetAllPlayers: () => dispatch(PlayerRepoActions.getAllPlayerAppearances())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Players)
