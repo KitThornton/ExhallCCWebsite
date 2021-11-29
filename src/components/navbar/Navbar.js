@@ -60,7 +60,7 @@ class NavBar extends React.Component {
                     </Nav>
                     <Form inline>
                         {/*<FormControl type="text" placeholder="Search for a player..." className="mr-sm-2" />*/}
-                        <PlayerSearchBar/>
+                        {/*<PlayerSearchBar/>*/}
                         {/*<Button*/}
                         {/*    // style={{paddingRight: 5, paddingLeft: 5}}*/}
                         {/*        variant="outline-light">Search*/}

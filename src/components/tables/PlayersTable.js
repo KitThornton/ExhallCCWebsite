@@ -11,7 +11,7 @@ import './PlayersTable.css'
 class PlayersTable extends React.Component {
 
     componentDidMount() {
-        this.props.onGetAllPlayers();
+        // this.props.onGetAllPlayers();
     }
 
 

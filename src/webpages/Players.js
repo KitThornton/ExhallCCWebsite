@@ -33,62 +33,50 @@ class Players extends React.Component {
         this.props.onGetAllPlayers();
     }
 
-    // getPlayers = async () => {
-    //     try {
-    //         const response = await fetch("http://localhost:4000/players/details");
-    //         const jsonData = await response.json();
-    //
-    //         this.setState({players: jsonData.rows});
-    //
-    //     } catch (err) {
-    //         console.error(err.message);
-    //     }
-    // };
-
     handleCareerBattingGraphDataChange = (stat) => {
         this.getCareerBattingGraphStat(stat).then(r => r);
     }
 
     getCareerBattingGraphStat = async stat => {
-        try {
-            let q;
-            const count = 10;
-
-            // TODO: change this switch to a dictionary const or similar? Must be a neater way
-            switch (stat) {
-                case "caps":
-                    q = `http://localhost:4000/players/CareerCaps/${count}`;
-                    break;
-                case "runs":
-                    q = `http://localhost:4000/batting/CareerRuns/${count}`;
-                    break;
-                case "highscore":
-                    q = `http://localhost:4000/batting/CareerHighScores/${count}`;
-                    break;
-                case "average":
-                    q = `http://localhost:4000/batting/CareerAverage/${count}`;
-                    break;
-                case "centuries":
-                    q = `http://localhost:4000/batting/CareerCenturies/${count}`;
-                    break;
-                default:
-                    break;
-            }
-
-            const response = await fetch(q);
-            const jsonData = await response.json();
-
-            this.setState({careerGraphStat: stat});
-            this.setState({careerGraphData: jsonData.rows});
-
-        } catch (err) {
-            console.error(err.message);
-        }
+        // try {
+        //     let q;
+        //     const count = 10;
+        //
+        //     // TODO: change this switch to a dictionary const or similar? Must be a neater way
+        //     switch (stat) {
+        //         case "caps":
+        //             q = `http://localhost:4000/players/CareerCaps/${count}`;
+        //             break;
+        //         case "runs":
+        //             q = `http://localhost:4000/batting/CareerRuns/${count}`;
+        //             break;
+        //         case "highscore":
+        //             q = `http://localhost:4000/batting/CareerHighScores/${count}`;
+        //             break;
+        //         case "average":
+        //             q = `http://localhost:4000/batting/CareerAverage/${count}`;
+        //             break;
+        //         case "centuries":
+        //             q = `http://localhost:4000/batting/CareerCenturies/${count}`;
+        //             break;
+        //         default:
+        //             break;
+        //     }
+        //
+        //     const response = await fetch(q);
+        //     const jsonData = await response.json();
+        //
+        //     this.setState({careerGraphStat: stat});
+        //     this.setState({careerGraphData: jsonData.rows});
+        //
+        // } catch (err) {
+        //     console.error(err.message);
+        // }
     };
 
-    handleCareerBowlingGraphDataChange = (stat) => {
-        this.getCareerBowlingGraphStat(stat).then(r => r);
-    }
+    // handleCareerBowlingGraphDataChange = (stat) => {
+    //     this.getCareerBowlingGraphStat(stat).then(r => r);
+    // }
 
     getCareerBowlingGraphStat = async (stat) => {
         try {
@@ -147,18 +135,17 @@ class Players extends React.Component {
                             <BattingButtonGroup onCareerGraphDataChange={this.handleCareerBattingGraphDataChange}/>
                         </div>
 
-                        <BiAxialBarChart stat={this.state.careerGraphStat} data={this.state.careerGraphData}/>
+                        <BiAxialBarChart/>
                     </Col>
                 </Row>
                 {/*    New row    */}
                 <Row>
                     <Col xs={6}>
                         <div className="div">
-                            <BowlingButtonGroup onCareerGraphDataChange={this.handleCareerBowlingGraphDataChange}/>
+                            {/*<BowlingButtonGroup onCareerGraphDataChange={this.handleCareerBowlingGraphDataChange}/>*/}
                         </div>
 
-                        <BiAxialBarChart stat={this.state.careerBowlingGraphStat}
-                                         data={this.state.careerBowlingGraphData}/>
+                        <BiAxialBarChart />
                     </Col>
 
                     <Col xs={6}>
@@ -166,8 +153,8 @@ class Players extends React.Component {
                             <BowlingButtonGroup/>
                         </div>
 
-                        <BiAxialBarChart stat={this.state.careerBowlingGraphStat}
-                                         data={this.state.careerBowlingGraphData}/>
+                        {/*<BiAxialBarChart stat={this.state.careerBowlingGraphStat}*/}
+                        {/*                 data={this.state.careerBowlingGraphData}/>*/}
                     </Col>
                 </Row>
                 {/*    Here we could have the best stats by season. And also choose to view the stats for a season? */}

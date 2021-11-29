@@ -1,8 +1,13 @@
-// Here we'll have a barchart where we pass in the the data source.
 import React from 'react';
 import {Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis,} from 'recharts';
+import * as BattingRepoActions from "../../actions/repositoryactions/Batting";
+import {connect} from "react-redux";
 
-export default class BiAxialBarChart extends React.Component {
+class BiAxialBarChart extends React.Component {
+
+    componentDidMount() {
+        this.props.onUpdateCareerBattingChartData("runs", 10);
+    }
 
     render() {
 
@@ -11,30 +16,46 @@ export default class BiAxialBarChart extends React.Component {
         }
 
         return (
-            <BarChart
-                width={450}
-                height={300}
-                data={this.props.data}
-                margin={{
-                    top: 5,
-                    right: 10,
-                    left: 10,
-                    bottom: 65,
-                }}
-            >
-                <CartesianGrid strokeDasharray="5 5"/>
-                <XAxis
-                    dataKey="playername"
-                    interval={0}
-                    tickFormatter={<CustomisedTickAxis/>}
-                    angle={-45}
-                    textAnchor='end'/>
-                <YAxis/>
-                <Tooltip/>
-                {/*<Legend />*/}
-                <Bar dataKey={this.props.stat} fill="#8884d8"/>
-                {/*<Bar dataKey="uv" fill="#82ca9d" />*/}
-            </BarChart>
+            <div>
+
+            </div>
+            // <BarChart
+            //     width={400}
+            //     height={300}
+            //     data={this.props.careerBattingChartData}
+            //     margin={{
+            //         top: 5,
+            //         right: 10,
+            //         left: 10,
+            //         bottom: 65,
+            //     }}
+            // >
+            //     <CartesianGrid strokeDasharray="5 5"/>
+            //     <XAxis
+            //         dataKey="playerId"
+            //         interval={0}
+            //         tickFormatter={<CustomisedTickAxis/>}
+            //         angle={-45}
+            //         textAnchor='end'/>
+            //     <YAxis/>
+            //     <Tooltip/>
+            //     {/*<Legend />*/}
+            //     <Bar dataKey={"runs"} fill="#8884d8"/>
+            //     {/*<Bar dataKey="uv" fill="#82ca9d" />*/}
+            // </BarChart>
         );
     }
 }
+
+
+const mapStateToProps = (state) => {
+    return {
+        careerBattingChartData: state.careerBattingChartData
+    }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    onUpdateCareerBattingChartData: (stat, count) => dispatch(BattingRepoActions.updateCareerBattingChartData(stat, count))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(BiAxialBarChart)
