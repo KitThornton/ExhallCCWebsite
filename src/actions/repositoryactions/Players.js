@@ -23,14 +23,3 @@ export const getAllPlayerAppearances = () => {
             )
     }
 }
-
-const dummyPlayers = [
-    {
-        name: "Kit T",
-        Id: 1
-    },
-    {
-        name: "Kit T",
-        Id: 2
-    }
-]

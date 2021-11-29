@@ -20,4 +20,4 @@ export const playerReducer = (state = initialState, action) => {
     }
 }
 
-// export default playerReducer
+export default playerReducer

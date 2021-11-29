@@ -36,8 +36,6 @@ class PlayerSelect extends React.Component {
 
     render() {
 
-        const {classes} = this.props;
-
         return (
             <Autocomplete
                 id="country-select-demo"

@@ -1,14 +1,14 @@
 import React from "react";
-import {DataGrid} from "@mui/x-data-grid";
-import {Grid} from "@mui/material";
-import Container from '@mui/material/Container';
+import {Container, Row, Col} from "react-bootstrap";
 import {connect} from "react-redux";
 import BiAxialBarChart from "../components/graphs/BiAxialBarChart";
 import BattingButtonGroup from "../components/buttons/BattingButtonGroup";
-import Columns from "../components/columns/PlayerDatabase";
+// import Columns from "../components/columns/PlayerDatabase";
 import PageHeader from "../components/PageHeader";
 import BowlingButtonGroup from "../components/buttons/BowlingButtonGroup";
-import * as PlayerRepoActions from '../actions/repositoryactions/Players'
+import * as PlayerRepoActions from '../actions/repositoryactions/Players';
+import "./Players.css";
+import PlayersTable from "../components/tables/PlayersTable";
 
 class Players extends React.Component {
 
@@ -16,8 +16,7 @@ class Players extends React.Component {
         super();
         this.state = {
             view: "runs",
-            // players: [],
-            columns: [],
+            // columns: [],
             careerGraphData: [],
             careerGraphStat: "runs",
             careerBowlingGraphData: [],
@@ -29,7 +28,7 @@ class Players extends React.Component {
         // this.getPlayers().then(r => r);
         this.getCareerBowlingGraphStat("wickets").then(r => r);
         this.getCareerBattingGraphStat("runs").then(r => r);
-        this.setState({columns: Columns});
+        // this.setState({columns: Columns});
 
         this.props.onGetAllPlayers();
     }
@@ -133,85 +132,50 @@ class Players extends React.Component {
 
     render() {
 
-        const {classes} = this.props;
-
         return (
             <Container className="root">
                 <PageHeader
                     header="Player Database"
                     description="Search via player name, view player caps and link to their profile page."
                 />
-                <Grid container spacing={5}
-                      alignItems="center"
-                      justify="center">
-                    <Grid item xs={6}>
-                        {/*TODO: add in first to last season played*/}
-                        <DataGrid
-                            className="table"
-                            width={"50%"}
-                            getRowId={(r) => r.id}
-                            rows={this.props.players}
-                            columns={this.state.columns}
-                            pageSize={40}/>
-                    </Grid>
-                    <Grid item xs={6} className="table">
+                <Row>
+                    <Col xs={6}>
+                        <PlayersTable />
+                    </Col>
+                    <Col xs={6} className="table">
                         <div className="div">
                             <BattingButtonGroup onCareerGraphDataChange={this.handleCareerBattingGraphDataChange}/>
                         </div>
 
                         <BiAxialBarChart stat={this.state.careerGraphStat} data={this.state.careerGraphData}/>
-                    </Grid>
-
-                    {/*    New row    */}
-                    <Grid item xs={6}>
+                    </Col>
+                </Row>
+                {/*    New row    */}
+                <Row>
+                    <Col xs={6}>
                         <div className="div">
                             <BowlingButtonGroup onCareerGraphDataChange={this.handleCareerBowlingGraphDataChange}/>
                         </div>
 
                         <BiAxialBarChart stat={this.state.careerBowlingGraphStat}
                                          data={this.state.careerBowlingGraphData}/>
-                    </Grid>
+                    </Col>
 
-                    <Grid item xs={6}>
+                    <Col xs={6}>
                         <div className="div">
                             <BowlingButtonGroup/>
                         </div>
 
-                        {/*</Grid>*/}
-                        {/*<Grid item xs={5}>*/}
-                        {/*    <h4 style={{ align: "centre" }}>Career Bowling</h4>*/}
                         <BiAxialBarChart stat={this.state.careerBowlingGraphStat}
                                          data={this.state.careerBowlingGraphData}/>
-                    </Grid>
-                    {/*    Here we could have the best stats by season. And also choose to view the stats for a season? */}
-                </Grid>
+                    </Col>
+                </Row>
+                {/*    Here we could have the best stats by season. And also choose to view the stats for a season? */}
             </Container>
         )
     }
 }
 
-// const styles = theme => ({
-//     root: {
-//         // maxWidth: 345,
-//         padding: 20,
-//         height: 900
-//     },
-//     table: {
-//         height: 400,
-//         // padding: 12,
-//         paddingBottom: 20
-//     },
-//     grid: {
-//         minHeight: 500,
-//         width: '100%',
-//         padding: "10px"
-//     },
-//     div: {
-//         padding: 10,
-//         alignItems: "center",
-//         justifyContent: "center"
-//     }
-// });
 
 const mapStateToProps = (state) => {
     return {
