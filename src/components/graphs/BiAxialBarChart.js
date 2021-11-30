@@ -1,5 +1,4 @@
 import React from 'react';
-import {Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis,} from 'recharts';
 import * as BattingRepoActions from "../../actions/repositoryactions/Batting";
 import {connect} from "react-redux";
 

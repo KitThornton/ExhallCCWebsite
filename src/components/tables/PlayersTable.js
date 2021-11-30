@@ -2,7 +2,6 @@ import React from "react";
 import {Col, Row} from "react-bootstrap";
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit';
-import columns2 from "../columns/PlayerDatabase";
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import * as PlayerRepoActions from "../../actions/repositoryactions/Players";
 import {connect} from "react-redux";
@@ -38,9 +37,9 @@ class PlayersTable extends React.Component {
         }, {
             text: '15', value: 15
         },
-        //     {
-        //     text: 'All', value: this.props.players.length
-        // }
+            //     {
+            //     text: 'All', value: this.props.players.length
+            // }
         ] // A numeric array is also available. the purpose of above example is custom the text
     };
 
@@ -72,7 +71,7 @@ class PlayersTable extends React.Component {
                                     condensed
                                     // rowClasses={rowClasses}
                                     wrapperClasses="table-responsive"
-                                    pagination={ paginationFactory(this.options) }
+                                    pagination={paginationFactory(this.options)}
                                 />
                             </div>
                         </div>
@@ -83,22 +82,22 @@ class PlayersTable extends React.Component {
     }
 }
 
-const customTotal = (from, to, size) => (
-    <span className="react-bootstrap-table-pagination-total">
-        Showing { from } to { to } of { size } players
-    </span>
-);
+// const customTotal = (from, to, size) => (
+//     <span className="react-bootstrap-table-pagination-total">
+//         Showing {from} to {to} of {size} players
+//     </span>
+// );
 
 
 export const Columns = [{
     dataField: "name",
     text: "Player Name",
     classes: "name"
-},{
+}, {
     dataField: "seasons",
     text: "Seasons",
     classes: "seasons"
-},{
+}, {
     dataField: "matches",
     text: "Appearances",
     classes: "appearances"

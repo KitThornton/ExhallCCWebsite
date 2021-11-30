@@ -43,10 +43,10 @@ const columns: GridColDef[] = [
 export const Columns2 = [{
     dataField: "name",
     text: "Player Name"
-},{
+}, {
     dataField: "seasons",
     text: "Seasons"
-},{
+}, {
     dataField: "appearances",
     text: "Appearances"
 }

@@ -1,7 +1,7 @@
 import * as ActionTypes from '../actions/types/Batting';
 
 const initialState = {
-    careerBattingChartData: []
+    careerBattingChartData: [{}]
 }
 
 const executeGetCareerRunsSuccess = (state, action) => {

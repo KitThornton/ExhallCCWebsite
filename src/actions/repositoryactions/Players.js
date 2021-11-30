@@ -8,11 +8,16 @@ const submitGetAllPlayerAppearancesSuccess = (data) => {
     }
 }
 
-export const getAllPlayerAppearances = () => {
+export const getAllPlayerAppearances = (count) => {
+
+    const base = baseURL + "/player/appearances/"
+    const url = count ? `${count}` : "";
+
+    console.log(url);
 
     return (dispatch) => {
 
-        fetch(baseURL + "/player/appearances")
+        fetch(base + url)
             .then(res => res.json())
             .then((result) => {
                     dispatch(submitGetAllPlayerAppearancesSuccess(result))

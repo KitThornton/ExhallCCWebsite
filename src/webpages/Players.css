@@ -1,7 +1,8 @@
 .root {
-padding: 20px;
-height: 900px;
+    padding: 20px;
+    height: 900px;
 }
+
 .table {
     /*height: 400px;*/
     /*max-height: 200px;*/
@@ -9,11 +10,13 @@ height: 900px;
     /* padding: 12,*/
     /*padding-bottom: 20*/
 }
+
 .grid {
     min-height: 500px;
     width: 100%;
     padding: 10px;
 }
+
 .div {
     padding: 10px;
     align-items: center;

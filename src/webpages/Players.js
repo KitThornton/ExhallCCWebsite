@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Row, Col} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import {connect} from "react-redux";
 import BiAxialBarChart from "../components/graphs/BiAxialBarChart";
 import BattingButtonGroup from "../components/buttons/BattingButtonGroup";
@@ -30,7 +30,7 @@ class Players extends React.Component {
         this.getCareerBattingGraphStat("runs").then(r => r);
         // this.setState({columns: Columns});
 
-        this.props.onGetAllPlayers();
+        this.props.onGetAllPlayers(10);
     }
 
     handleCareerBattingGraphDataChange = (stat) => {
@@ -128,7 +128,7 @@ class Players extends React.Component {
                 />
                 <Row>
                     <Col xs={6}>
-                        <PlayersTable />
+                        <PlayersTable/>
                     </Col>
                     <Col xs={6} className="table">
                         <div className="div">
@@ -145,7 +145,7 @@ class Players extends React.Component {
                             {/*<BowlingButtonGroup onCareerGraphDataChange={this.handleCareerBowlingGraphDataChange}/>*/}
                         </div>
 
-                        <BiAxialBarChart />
+                        <BiAxialBarChart/>
                     </Col>
 
                     <Col xs={6}>
@@ -171,7 +171,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    onGetAllPlayers: () => dispatch(PlayerRepoActions.getAllPlayerAppearances())
+    onGetAllPlayers: (count) => dispatch(PlayerRepoActions.getAllPlayerAppearances(count))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Players)

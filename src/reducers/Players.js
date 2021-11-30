@@ -1,7 +1,7 @@
 import * as PlayersActionTypes from '../actions/types/Players';
 
 const initialState = {
-    players: []
+    players: [{}]
 }
 
 const executeGetAllPlayersSuccess = (state, action) => {

@@ -8,6 +8,6 @@ const rootReducer = combineReducers({
     batting: battingReducer
 })
 
-// export const store = createStore(rootReducer, applyMiddleware(thunk))
-export const store = createStore(playerReducer, applyMiddleware(thunk))
+export const store = createStore(rootReducer, applyMiddleware(thunk))
+// export const store = createStore(playerReducer, applyMiddleware(thunk))
 export const baseURL = "https://localhost:5001";
